@@ -1,0 +1,5 @@
+{
+  "database": {
+    "connectionString": "DB_CONNECTION"
+  }
+}
