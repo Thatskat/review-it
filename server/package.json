@@ -1,0 +1,16 @@
+{
+  "name": "review-it-server",
+  "version": "1.0.0",
+  "description": "server to review and rate all your favourite tv shows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kat Gill",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^4.9.2",
+    "graphql": "^16.8.0",
+    "graphql-tag": "^2.12.6"
+  }
+}
