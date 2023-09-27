@@ -3,16 +3,29 @@ const UserModel = require("../models/user");
 const userResolver = {
   Query: {
     getUser: async (root, arguments) => {
-      const user = await UserModel.findById(arguments.id);
-      if (!user) {
-        console.error("Error: No User has been found.");
+      try {
+        const user = await UserModel.findById(arguments.id);
+        if (!user) {
+          console.error("Error: No User has been found.");
+        }
+        return user;
+      } catch (err) {
+        console.err(err);
       }
-      return user;
     },
     searchUsers: async (root, { search }) => {
-      const stringToRegEx = `.*${search}.*`;
-      const regExpression = new RegExp(stringToRegEx, "g");
-      return await UserModel.find({ username: regExpression });
+      try {
+        const stringToRegEx = `.*${search}.*`;
+        const regExpression = new RegExp(stringToRegEx, "g");
+        const user = await UserModel.find({ username: regExpression });
+        if (user === 0 || user <= 0) {
+          console.log("Error: Username not found");
+        } else {
+          return user;
+        }
+      } catch (err) {
+        console.error(err);
+      }
     },
   },
   Mutation: {
@@ -40,7 +53,7 @@ const userResolver = {
       try {
         return await UserModel.findByIdAndRemove(arguments.id);
       } catch (err) {
-        console.log("Error has occurred when deleting user", err);
+        console.error("Error has occurred when deleting user", err);
       }
     },
   },
