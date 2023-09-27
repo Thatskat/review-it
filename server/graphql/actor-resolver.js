@@ -42,7 +42,7 @@ const actorResolver = {
       try {
         const lastNameRegExp = `.*${lastName}.*`;
         const regExp = new RegExp(lastNameRegExp, "g");
-        const actor = await Actor.find({lastName: regExp});
+        const actor = await Actor.find({ lastName: regExp });
         if (actor.length === 0 || actor.length <= 0) {
           console.log("Error: No Actor with at first name could be found.");
         } else {
@@ -67,6 +67,30 @@ const actorResolver = {
         return actor;
       } catch (err) {
         console.error("Error has occurred adding a new actor", err);
+      }
+    },
+    editActor: async (root, arguments) => {
+      try {
+        const { error } = validate(arguments.input);
+        if (error) {
+          console.log(
+            `Error: An error has ocurred editing a pre-existing actor in the database. More Info: ${error.details[0].message}`
+          );
+        }
+        return await Actor.findByIdAndUpdate(
+          arguments.input.id,
+          arguments.input,
+          { new: true }
+        );
+      } catch (err) {
+        console.error("Error has occurred editing pre-existing actor.", err);
+      }
+    },
+    deleteActor: async (root, { id }) => {
+      try {
+        return await Actor.findByIdAndRemove(id);
+      } catch (err) {
+        console.error("Error has ocurred deleting actor for the database", err);
       }
     },
   },
