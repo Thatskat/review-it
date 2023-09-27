@@ -1,4 +1,4 @@
-const UserModel = require("../models/user");
+const { UserModel, validate } = require("../models/user");
 
 const userResolver = {
   Query: {
@@ -31,6 +31,12 @@ const userResolver = {
   Mutation: {
     addUser: async (root, arguments) => {
       try {
+        const { error } = validate(arguments.input);
+        if (error) {
+          console.error(
+            `Error: An error has occurred adding the user to the database. More Info: ${error.details[0].message}`
+          );
+        }
         const user = new AuthorModel(arguments.input);
         await user.save();
         return user;
@@ -40,6 +46,10 @@ const userResolver = {
     },
     editUser: async (root, arguments) => {
       try {
+        const {error} = validate(arguments.input);
+        if(error){
+          console.error(`Error: An error has occurred editing user. More Info: ${error.details[0].message}`)
+        }
         return await UserModel.findByIdAndUpdate(
           arguments.input.id,
           arguments.input,

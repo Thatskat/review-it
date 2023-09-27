@@ -66,7 +66,7 @@ const actorResolver = {
         await actor.save();
         return actor;
       } catch (err) {
-        console.error("Error has occurred adding a new user", err);
+        console.error("Error has occurred adding a new actor", err);
       }
     },
   },
