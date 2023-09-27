@@ -3,12 +3,20 @@ const { Actor, validate } = require("../models/actor");
 const actorResolver = {
   Query: {
     findActorById: async (root, arguments) => {
-      const user = await Actor.findById(arguments.id);
-      if (!user) {
-        console.error("Error: No User has been found.");
+      const actor = await Actor.findById(arguments.id);
+      if (!actor) {
+        console.error("Error: No Actor has been found.");
       }
-      return user;
+      return actor;
     },
+    findAllActor: async (root, arguments) => {
+      const actors = await Actor.find({});
+      if(!actors) {
+        console.error("Error: No Actors could be found.")
+      }
+      return actors;
+    },
+    searchActorByFirstName: async(root, arguments) => {}
   },
   Mutation: {
     addActor: async (root, arguments) => {

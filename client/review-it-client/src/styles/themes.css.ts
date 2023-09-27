@@ -1,4 +1,4 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createGlobalTheme, createTheme } from "@vanilla-extract/css";
 
 export const variables = createGlobalTheme(":root", {
   fonts: {
@@ -7,7 +7,8 @@ export const variables = createGlobalTheme(":root", {
   },
   colors: {
     primary: "#171717",
-    secondary: "#f5f5f5",
+    secondary: "#DEDEDE",
+    secondaryDark: "#EAEAEA",
     brand: "#fdba74",
     brandDark: "#fb923c",
     brandLight: "#fed7aa",
@@ -20,5 +21,19 @@ export const variables = createGlobalTheme(":root", {
   },
   space: {
     none: "0",
+  },
+});
+
+export const [darkTheme, vars] = createTheme({
+  colors: {
+    primary: "#171717",
+    secondary: "#f5f5f5",
+  },
+});
+
+export const lightTheme = createTheme(vars, {
+  colors: {
+    primary: "#f5f5f5",
+    secondary: "#171717",
   },
 });
