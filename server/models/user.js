@@ -105,7 +105,19 @@ userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-
+userSchema.methods.generateToken = function () {
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      username: this.username,
+      email: this.email,
+    },
+    config.get("appPrivateKey")
+  );
+  return token;
+};
 
 module.exports.User = mongoose.model("User", userSchema);
 module.exports.validate = validate;
