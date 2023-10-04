@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Joi = require("joi");
 
 // JOU VALIDATION
-function validateUser(user) {
+function validate(user) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
     lastName: Joi.string().min(2).max(20).required(),
@@ -86,4 +86,4 @@ const userSchema = new Schema({
 });
 
 module.exports = mongoose.model("User", userSchema);
-module.exports.validateUser = validate;
+module.exports.validate = validate;
