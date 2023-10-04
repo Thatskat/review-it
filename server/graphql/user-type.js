@@ -3,22 +3,24 @@ const gql = require("graphql-tag");
 const userType = gql`
   type UserType {
     id: ID
-    fistName: String!
+    firstName: String!
     lastName: String!
     username: String!
     password: String!
     email: String!
     isAdmin: Boolean
     profilePicture: String!
+    displayName: String!
   }
   input UserInput {
-    fistName: String!
+    firstName: String!
     lastName: String!
     username: String!
     password: String!
     email: String!
     isAdmin: Boolean
     profilePicture: String!
+    displayName: String!
   }
   type Query {
     getUser(id: ID): UserType

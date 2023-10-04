@@ -1,10 +1,10 @@
-const { UserModel, validate } = require("../models/user");
+const { User, validate } = require("../models/user");
 
 const userResolver = {
   Query: {
     getUser: async (root, arguments) => {
       try {
-        const user = await UserModel.findById(arguments.id);
+        const user = await User.findById(arguments.id);
         if (!user) {
           console.error("Error: No User has been found.");
         }
@@ -17,7 +17,7 @@ const userResolver = {
       try {
         const stringToRegEx = `.*${search}.*`;
         const regExpression = new RegExp(stringToRegEx, "i");
-        const user = await UserModel.find({ username: regExpression });
+        const user = await User.find({ username: regExpression });
         if (user === 0 || user <= 0) {
           console.log("Error: Username not found");
         } else {
@@ -37,7 +37,7 @@ const userResolver = {
             `Error: An error has occurred adding the user to the database. More Info: ${error.details[0].message}`
           );
         }
-        const user = new AuthorModel(arguments.input);
+        const user = new User(arguments.input);
         await user.save();
         return user;
       } catch (err) {
@@ -50,7 +50,7 @@ const userResolver = {
         if(error){
           console.error(`Error: An error has occurred editing user. More Info: ${error.details[0].message}`)
         }
-        return await UserModel.findByIdAndUpdate(
+        return await User.findByIdAndUpdate(
           arguments.input.id,
           arguments.input,
           { new: true }
@@ -61,7 +61,7 @@ const userResolver = {
     },
     deleteUser: async (root, arguments) => {
       try {
-        return await UserModel.findByIdAndRemove(arguments.id);
+        return await User.findByIdAndRemove(arguments.id);
       } catch (err) {
         console.error("Error has occurred when deleting user", err);
       }

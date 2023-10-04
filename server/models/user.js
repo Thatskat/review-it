@@ -7,9 +7,9 @@ function validate(user) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
     lastName: Joi.string().min(2).max(20).required(),
-    username: Joi.string().pattern(`^[a-zA-Z0-9]+$`).min(1).max(30).required(),
+    username: Joi.string().pattern(new RegExp(`^[a-zA-Z0-9]+$`)).min(1).max(30).required(),
     password: Joi.string()
-      .pattern(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$`)
+      .pattern( new RegExp(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$`))
       .min(8)
       .max(100)
       .required(),
@@ -85,5 +85,5 @@ const userSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports.User = mongoose.model("User", userSchema);
 module.exports.validate = validate;

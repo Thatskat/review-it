@@ -92,7 +92,8 @@ export const GET_ALL_TV_SHOWS = gql`
   }
 `;
 
-export const SEARCH_SHOW = gql`query Query($title: String!) {
+export const SEARCH_SHOW = gql`
+  query Query($title: String!) {
     searchShow(title: $title) {
       cast {
         _id
@@ -109,4 +110,37 @@ export const SEARCH_SHOW = gql`query Query($title: String!) {
       showPoster
       title
     }
-  }`
+  }
+`;
+
+export const GET_USER = gql`
+  query Query($getUserId: ID) {
+    getUser(id: $getUserId) {
+      displayName
+      email
+      firstName
+      isAdmin
+      id
+      password
+      lastName
+      profilePicture
+      username
+    }
+  }
+`;
+
+export const SEARCH_USERS = gql`
+  query Query($search: String) {
+    searchUsers(search: $search) {
+      displayName
+      email
+      firstName
+      id
+      isAdmin
+      lastName
+      password
+      profilePicture
+      username
+    }
+  }
+`;
