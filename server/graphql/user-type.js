@@ -22,6 +22,10 @@ const userType = gql`
     profilePicture: String!
     displayName: String!
   }
+  input LoginInput {
+    email: String!
+    password: String!
+  }
   type Query {
     getUser(id: ID): UserType
     searchUsers(search: String): [UserType]
@@ -30,6 +34,7 @@ const userType = gql`
     addUser(input: UserInput): UserType
     editUser(input: UserInput): UserType
     deleteUser(id: ID!): UserType
+    loginUser(input: LoginInput):UserType
   }
 `;
 

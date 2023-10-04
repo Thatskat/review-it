@@ -47,6 +47,17 @@ const userResolver = {
         await user.save();
 
         const token = user.generateToken();
+        let data = _.pick(user, [
+          "_id",
+          "username",
+          "firstName",
+          "lastName",
+          "email",
+          "displayName",
+          "profilePicture",
+        ]);
+        data.token = token;
+        return data;
       } catch (err) {
         console.error("Error has occurred adding a new user", err);
       }
