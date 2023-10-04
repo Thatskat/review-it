@@ -6,7 +6,7 @@ const tvShowType = gql`
     title: String!
     description: String!
     episodeNo: Int!
-    cast: [String!]
+    cast: [ActorType!]
     showPoster: String!
     imdbLink: String!
   }
@@ -14,7 +14,7 @@ const tvShowType = gql`
     title: String!
     description: String!
     episodeNo: Int!
-    cast: [String!]
+    cast: [ID!]
     showPoster: String!
     imdbLink: String!
   }

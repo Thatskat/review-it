@@ -13,7 +13,7 @@ const actorResolver = {
         console.error(err);
       }
     },
-    findAllActor: async (root, arguments) => {
+    findAllActors: async (root, arguments) => {
       try {
         const actors = await Actor.find({});
         if (!actors) {
@@ -27,7 +27,7 @@ const actorResolver = {
     searchActorByFirstName: async (root, { firstName }) => {
       try {
         const firstNameRegExp = `.*${firstName}.*`;
-        const regExp = new RegExp(firstNameRegExp, "g");
+        const regExp = new RegExp(firstNameRegExp, "i");
         const actor = await Actor.find({ firstName: regExp });
         if (actor.length === 0 || actor.length <= 0) {
           console.error("Error: No Actor with that first name could be found.");
@@ -41,7 +41,7 @@ const actorResolver = {
     searchActorByLastName: async (root, { lastName }) => {
       try {
         const lastNameRegExp = `.*${lastName}.*`;
-        const regExp = new RegExp(lastNameRegExp, "g");
+        const regExp = new RegExp(lastNameRegExp, "i");
         const actor = await Actor.find({ lastName: regExp });
         if (actor.length === 0 || actor.length <= 0) {
           console.log("Error: No Actor with at first name could be found.");

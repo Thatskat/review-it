@@ -9,7 +9,7 @@ function validateShow(show) {
     episodeNo: Joi.number().min(0).required(),
     cast: Joi.array()
       .items(Joi.string().min(1).max(50))
-      .min(3)
+      .min(1)
       .max(30)
       .required(),
     showPoster: Joi.string()

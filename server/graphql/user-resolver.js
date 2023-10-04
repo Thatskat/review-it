@@ -16,7 +16,7 @@ const userResolver = {
     searchUsers: async (root, { search }) => {
       try {
         const stringToRegEx = `.*${search}.*`;
-        const regExpression = new RegExp(stringToRegEx, "g");
+        const regExpression = new RegExp(stringToRegEx, "i");
         const user = await UserModel.find({ username: regExpression });
         if (user === 0 || user <= 0) {
           console.log("Error: Username not found");

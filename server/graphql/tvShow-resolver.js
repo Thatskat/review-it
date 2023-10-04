@@ -1,4 +1,4 @@
-import { TvShow, validate } from "../models/tvshow";
+const { TvShow, validate } = require("../models/tvshow");
 
 const tvShowResolver = {
   Query: {
@@ -24,10 +24,10 @@ const tvShowResolver = {
         console.error(err);
       }
     },
-    searchShows: async (root, { title }) => {
+    searchShow: async (root, { title }) => {
       try {
         const titleRegExp = `.*${title}.*`;
-        const regExp = new RegExp(titleRegExp, "g");
+        const regExp = new RegExp(titleRegExp, "i");
         const show = await TvShow.find({ title: regExp });
         if (show.length === 0 || show.length <= 0) {
           console.error("Error: No Tv Show with that title could be found.");
@@ -72,7 +72,7 @@ const tvShowResolver = {
         console.error("Error has ocurred editing pre-existing show.", err);
       }
     },
-    deleteTvShow: async (root, { id }) => {
+    deleteShow: async (root, { id }) => {
       try {
         return await TvShow.findByIdAndRemove(id);
       } catch (err) {
