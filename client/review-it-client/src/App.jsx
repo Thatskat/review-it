@@ -51,13 +51,24 @@ function App() {
     }
   }, []);
 
-  // PROTECTED ROUTES FUNCTION WHEN 
+  function ProtectedRoutes({ component: Component, ...rest }) {
+    const user = getUserFromSessionStorage();
+    if (!user) {
+      return <Navigate to="/" replace />;
+    } else {
+      return <Component {...rest} user={user} />;
+    }
+  }
+
+  // PROTECTED ROUTES FUNCTION WHEN
   return (
-    <Routes>
-      <Route>
-        <Route path="/" element={<HomePage />} />
-      </Route>
-    </Routes>
+    <ApolloProvider client={client}>
+      <Routes>
+        <Route>
+          <Route path="/" element={<HomePage />} />
+        </Route>
+      </Routes>
+    </ApolloProvider>
   );
 }
 
