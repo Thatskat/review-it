@@ -39,4 +39,50 @@ const tvShowResolver = {
       }
     },
   },
+  Mutation: {
+    addTvShow: async (root, arguments) => {
+      try {
+        const { error } = validate(arguments.input);
+        if (error) {
+          console.error(
+            `Error: An error has ocurred adding the thv show to the database. More Info: ${error.details[0].message}`
+          );
+        }
+        let show = new TvShow(arguments.input);
+        await show.save();
+        return show;
+      } catch (err) {
+        console.error("Error has ocurred adding a new show", err);
+      }
+    },
+    editTvShow: async (root, arguments) => {
+      try {
+        const { error } = validate(arguments.input);
+        if (error) {
+          console.error(
+            `Error: An error has ocurred editing a pre-existing tv show in the database. More Info: ${error.details[0].message}`
+          );
+        }
+        return await TvShow.findByIdAndUpdate(
+          arguments.input.id,
+          arguments.input,
+          { new: true }
+        );
+      } catch (err) {
+        console.error("Error has ocurred editing pre-existing show.", err);
+      }
+    },
+    deleteTvShow: async (root, { id }) => {
+      try {
+        return await TvShow.findByIdAndRemove(id);
+      } catch (err) {
+        console.error(
+          "Error has ocurred deleting tv show from the database",
+          err
+        );
+      }
+    },
+  },
 };
+
+module.exports = tvShowResolver;

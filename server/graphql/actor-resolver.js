@@ -90,7 +90,7 @@ const actorResolver = {
       try {
         return await Actor.findByIdAndRemove(id);
       } catch (err) {
-        console.error("Error has ocurred deleting actor for the database", err);
+        console.error("Error has ocurred deleting actor from the database", err);
       }
     },
   },
