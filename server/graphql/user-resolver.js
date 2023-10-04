@@ -80,6 +80,8 @@ const userResolver = {
           "lastName",
           "username",
           "email",
+          "profilePicture",
+          "displayName",
         ]);
         data.token = token;
         return data;
@@ -87,14 +89,20 @@ const userResolver = {
         console.error(err);
       }
     },
-    editUser: async (root, arguments) => {
+    editUser: async (root, arguments, context) => {
       try {
+        isAuthenticatedUser(context);
+        const user = await User.findById(arguments.id);
+        if (!user) {
+          console.error("Error: No user found");
+        }
         const { error } = validate(arguments.input);
         if (error) {
           console.error(
             `Error: An error has occurred editing user. More Info: ${error.details[0].message}`
           );
         }
+        isAuthorized(user, context);
         return await User.findByIdAndUpdate(
           arguments.input.id,
           arguments.input,
@@ -104,8 +112,14 @@ const userResolver = {
         console.error("Error has occurred editing user", err);
       }
     },
-    deleteUser: async (root, arguments) => {
+    deleteUser: async (root, arguments, context) => {
       try {
+        isAuthenticatedUser(context);
+        const user = await User.findById(arguments.id);
+        if (!user) {
+          console.error("Error: No user found.");
+        }
+        isAuthorized(user, context);
         return await User.findByIdAndRemove(arguments.id);
       } catch (err) {
         console.error("Error has occurred when deleting user", err);
