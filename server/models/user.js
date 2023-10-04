@@ -1,15 +1,24 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Joi = require("joi");
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 // JOU VALIDATION
 function validate(user) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
     lastName: Joi.string().min(2).max(20).required(),
-    username: Joi.string().pattern(new RegExp(`^[a-zA-Z0-9]+$`)).min(1).max(30).required(),
+    username: Joi.string()
+      .pattern(new RegExp(`^[a-zA-Z0-9]+$`))
+      .min(1)
+      .max(30)
+      .required(),
     password: Joi.string()
-      .pattern( new RegExp(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$`))
+      .pattern(
+        new RegExp(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$`)
+      )
       .min(8)
       .max(100)
       .required(),
@@ -84,6 +93,15 @@ const userSchema = new Schema({
     lowercase: true,
   },
 });
+
+userSchema.pre("save", async function () {
+  if (this.isModified("password")) {
+    const salt = await bcrypt.genSalt(15);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
+});
+
+user
 
 module.exports.User = mongoose.model("User", userSchema);
 module.exports.validate = validate;

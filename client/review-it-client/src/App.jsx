@@ -8,6 +8,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Layout from "./components/layout/Layout";
 // PAGES
 import HomePage from "./pages/HomePage";
+import SignUpPage from "./pages/SignUp";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000",
@@ -66,6 +67,7 @@ function App() {
       <Routes>
         <Route>
           <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignUpPage />}/>
         </Route>
       </Routes>
     </ApolloProvider>

@@ -39,7 +39,8 @@ const userResolver = {
         }
         const user = new User(arguments.input);
         await user.save();
-        return user;
+        
+        const token = user.ge
       } catch (err) {
         console.error("Error has occurred adding a new user", err);
       }
