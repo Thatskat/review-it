@@ -30,7 +30,7 @@ const actorResolver = {
         const regExp = new RegExp(firstNameRegExp, "g");
         const actor = await Actor.find({ firstName: regExp });
         if (actor.length === 0 || actor.length <= 0) {
-          console.log("Error: No Actor with at first name could be found.");
+          console.error("Error: No Actor with that first name could be found.");
         } else {
           return actor;
         }
