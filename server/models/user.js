@@ -113,6 +113,8 @@ userSchema.methods.generateToken = function () {
       lastName: this.lastName,
       username: this.username,
       email: this.email,
+      profilePicture: this.profilePicture,
+      displayName: this.displayName
     },
     config.get("appPrivateKey")
   );
