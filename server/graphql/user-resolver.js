@@ -55,6 +55,7 @@ const userResolver = {
           "email",
           "displayName",
           "profilePicture",
+          "isAdmin",
         ]);
         data.token = token;
         return data;
@@ -93,8 +94,10 @@ const userResolver = {
           "email",
           "profilePicture",
           "displayName",
+          "isAdmin",
         ]);
         data.token = token;
+        console.log(token);
         return data;
       } catch (err) {
         console.error(err);

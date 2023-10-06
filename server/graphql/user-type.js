@@ -2,11 +2,21 @@ const gql = require("graphql-tag");
 
 const userType = gql`
   type UserType {
-    id: ID
+    _id: ID
     firstName: String!
     lastName: String!
     username: String!
     password: String!
+    email: String!
+    isAdmin: Boolean
+    profilePicture: String!
+    displayName: String!
+  }
+  type UserReturnType {
+    _id: ID
+    firstName: String!
+    lastName: String!
+    username: String!
     email: String!
     isAdmin: Boolean
     profilePicture: String!
@@ -31,10 +41,10 @@ const userType = gql`
     searchUsers(search: String): [UserType]
   }
   type Mutation {
-    addUser(input: UserInput): UserType
-    editUser(input: UserInput): UserType
-    deleteUser(id: ID!): UserType
-    loginUser(input: LoginInput):UserType
+    addUser(input: UserInput): UserReturnType
+    editUser(id: ID!, input: UserInput): UserReturnType
+    deleteUser(id: ID!): UserReturnType
+    loginUser(input: LoginInput):UserReturnType
   }
 `;
 

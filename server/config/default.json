@@ -3,5 +3,6 @@
     "name": "review-it",
     "connectionString": "mongodb://localhost:37017/"
   },
-  "appPrivateKey": "8C8ucX_:dU8&sQ8`;Q>5r"
+  "appPrivateKey": "8C8ucX_:dU8&sQ8`;Q>5r",
+  "appEnvironment": "development"
 }
