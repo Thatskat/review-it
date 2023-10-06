@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 // APOLLO SERVER
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 // LAYOUT
-import Layout from "./components/layout/Layout";
+import Layout from './components/layout/Layout'
 // PAGES
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUp";
@@ -65,8 +65,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Routes>
-        <Route>
-          <Route path="/" element={<HomePage />} />
+        <Route path='/' element={<Layout />}>
+          <Route index element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />}/>
         </Route>
       </Routes>
