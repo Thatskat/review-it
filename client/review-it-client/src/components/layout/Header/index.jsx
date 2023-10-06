@@ -1,40 +1,37 @@
 import { Link } from "react-router-dom";
 import * as styles from "./index.css";
 
+import { BiSolidSearch } from "react-icons/bi";
+
 const Header = () => {
   return (
     <header className={styles.header}>
       <div>
-        <Link to="/">Logo</Link>
+        <Link to="/">R{/* SITE LOGO */}</Link>
       </div>
-      <nav className={styles.navbar}>
+      <div className="navLinks">
         <ul>
           <li>
-            <Link to="/" title="Home">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/shows" title="TV Shows">TV Shows</Link>
+            <Link to="/shows">Tv Shows</Link>
           </li>
           <li>
-            <Link to="/lists" title="Lists">Lists</Link>
+            <Link to="/shows/trending">Trending Shows</Link>
           </li>
           <li>
-            <Link to="/signup" title="Create an Account">Create an Account</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/login" title="Login">Login</Link>
-          </li>
-          {/* <li>
-            <Link to="/profile" title="My Profile">My Profile</Link>
+            <Link to="/signup">Sign Up</Link>
           </li>
           <li>
-            <button>Log Out</button>
-          </li> */}
+            <Link to="/" title="search">
+              <BiSolidSearch />
+            </Link>
+          </li>
         </ul>
-      </nav>
-      <div className={styles.searchBox}>
-        <label htmlFor="searchBox">Search</label>
-        <input type="text" placeholder="Search" id="searchBox"/>
       </div>
     </header>
   );
