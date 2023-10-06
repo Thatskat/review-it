@@ -17,5 +17,6 @@ globalStyle(`${header} .navLinks ul li`, {
 globalStyle(`${header} .navLinks ul li a`, {
   color: variables.colors.secondary,
   textTransform: "lowercase",
-  margin: "auto 1rem"
+  margin: "auto 1rem",
+  fontFamily: variables.fonts.brand
 });

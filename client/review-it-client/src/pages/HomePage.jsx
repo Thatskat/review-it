@@ -10,7 +10,11 @@ const HomePage = () => {
     <div >
       <Header />
       <div className={styles.home}>
-     <h1>Review It</h1>
+       <img src={homeTest} />
+       <div>
+       <h1>Review <br></br>It</h1>
+       <p>Unlocking the World of Reviews, One Click at a Time</p>
+       </div>
       </div>
 
       <Footer />
