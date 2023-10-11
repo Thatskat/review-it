@@ -15,10 +15,16 @@ globalStyle(`${footer} h4`, {
   fontFamily: variables.fonts.brand,
   textTransform: "lowercase",
 });
+globalStyle(`${footer} ul`, {
+  overflow: "hidden",
+});
+globalStyle(`${footer} ul li`, {
+  display: "block",
+  overflow: "hidden",
+});
 globalStyle(`${footer} a`, {
   color: variables.colors.brand,
   textTransform: "lowercase",
-  display: "block",
   fontSize: "0.8em",
   padding: "0.2rem 0",
 });
