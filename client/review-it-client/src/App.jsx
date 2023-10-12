@@ -5,10 +5,11 @@ import { useState, useEffect } from "react";
 // APOLLO SERVER
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 // LAYOUT
-import Layout from './components/layout/Layout'
+import Layout from "./components/layout/Layout";
 // PAGES
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUp";
+import ProfilePage from "./pages/ProfilePage";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000",
@@ -65,9 +66,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<Layout user={user} logout={handleLogout} />}>
           <Route index element={<HomePage />} />
-          <Route path="/signup" element={<SignUpPage login={handleLogin}/>}/>
+          <Route path="/signup" element={<SignUpPage login={handleLogin} />} />
+          <Route
+            path="/profile/:id"
+            element={<ProtectedRoutes component={ProfilePage} user={user} />}
+          />
         </Route>
       </Routes>
     </ApolloProvider>
