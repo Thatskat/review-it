@@ -4,10 +4,23 @@ import * as styles from "./index.css";
 import { BiSolidSearch } from "react-icons/bi";
 
 const Header = ({ user, logout }) => {
+  //  GET A CUSTOM SAYING :)
+  const getRandomGreeting = () => {
+    const greetingsArray = [
+      "Hello",
+      "Hello There",
+      "G'Day",
+      "Howdy",
+      "Yo!",
+      "What's Happening",
+    ];
+    const random = Math.floor(Math.random() * greetingsArray.length);
+    return greetingsArray[random]
+  };
   return (
     <header className={styles.header}>
       <div>
-        <Link to="/"> {user ? <p>Hello {user.displayName}</p> : ""}</Link>
+        <Link to="/"> {user ? <p>{getRandomGreeting()} {user.displayName}</p> : ""}</Link>
       </div>
       <div className="navLinks">
         <ul>
@@ -43,7 +56,6 @@ const Header = ({ user, logout }) => {
               <BiSolidSearch />
             </Link>
           </li>
-         
         </ul>
       </div>
     </header>

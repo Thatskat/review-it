@@ -97,18 +97,18 @@ export const DELETE_SHOW = gql`
 `;
 
 export const ADD_USER = gql`
-mutation Mutation($input: UserInput) {
-  addUser(input: $input) {
-    _id
-    displayName
-    email
-    firstName
-    isAdmin
-    lastName
-    username
-    token
+  mutation Mutation($input: UserInput) {
+    addUser(input: $input) {
+      _id
+      displayName
+      email
+      firstName
+      isAdmin
+      lastName
+      username
+      token
+    }
   }
-}
 `;
 export const EDIT_USER = gql`
   mutation EditUser($input: UserInput) {
@@ -138,6 +138,21 @@ export const DELETE_USER = gql`
       password
       username
       token
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  mutation Mutation($input: LoginInput) {
+    loginUser(input: $input) {
+      _id
+      email
+      firstName
+      isAdmin
+      token
+      username
+      lastName
+      displayName
     }
   }
 `;
