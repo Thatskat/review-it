@@ -5,7 +5,7 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-// JOU VALIDATION
+// JOI VALIDATION
 function validate(user) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
@@ -26,16 +26,6 @@ function validate(user) {
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
       .required(),
     isAdmin: Joi.boolean(),
-    profilePicture: Joi.object({
-      key: Joi.string().required(),
-      originalname: Joi.string().required(),
-      mimetype: Joi.string()
-        .valid("image/jpeg", "image/png", "image/gif")
-        .required(),
-      size: Joi.number()
-        .max(5 * 1024 * 1024)
-        .required(),
-    }).required(),
     displayName: Joi.string().min(1).max(20).required(),
   });
   return schema.validate(user);
@@ -80,10 +70,6 @@ const userSchema = new Schema({
   isAdmin: {
     type: Boolean,
   },
-  profilePicture: {
-    type: String,
-    required: true,
-  },
   displayName: {
     type: String,
     min: 1,
@@ -113,7 +99,6 @@ userSchema.methods.generateToken = function () {
       lastName: this.lastName,
       username: this.username,
       email: this.email,
-      profilePicture: this.profilePicture,
       displayName: this.displayName
     },
     config.get("appPrivateKey")

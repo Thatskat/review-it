@@ -54,7 +54,6 @@ const userResolver = {
           "lastName",
           "email",
           "displayName",
-          "profilePicture",
           "isAdmin",
         ]);
         data.token = token;
@@ -92,7 +91,6 @@ const userResolver = {
           "lastName",
           "username",
           "email",
-          "profilePicture",
           "displayName",
           "isAdmin",
         ]);

@@ -9,8 +9,8 @@ const userType = gql`
     password: String!
     email: String!
     isAdmin: Boolean
-    profilePicture: String!
     displayName: String!
+    token: String
   }
   type UserReturnType {
     _id: ID
@@ -19,8 +19,8 @@ const userType = gql`
     username: String!
     email: String!
     isAdmin: Boolean
-    profilePicture: String!
     displayName: String!
+    token: String
   }
   input UserInput {
     firstName: String!
@@ -29,7 +29,6 @@ const userType = gql`
     password: String!
     email: String!
     isAdmin: Boolean
-    profilePicture: String!
     displayName: String!
   }
   input LoginInput {

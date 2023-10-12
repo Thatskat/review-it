@@ -8,7 +8,6 @@ export const ADD_ACTOR = gql`
       firstName
       imdbProfileLink
       lastName
-      profilePicture
     }
   }
 `;
@@ -21,7 +20,6 @@ export const EDIT_ACTOR = gql`
       firstName
       imdbProfileLink
       lastName
-      profilePicture
     }
   }
 `;
@@ -34,7 +32,6 @@ export const DELETE_ACTOR = gql`
       firstName
       imdbProfileLink
       lastName
-      profilePicture
     }
   }
 `;
@@ -48,7 +45,6 @@ export const ADD_TV_SHOW = gql`
         firstName
         imdbProfileLink
         lastName
-        profilePicture
       }
       description
       episodeNo
@@ -69,7 +65,6 @@ export const EDIT_TV_SHOW = gql`
         firstName
         imdbProfileLink
         lastName
-        profilePicture
       }
       description
       episodeNo
@@ -90,7 +85,6 @@ export const DELETE_SHOW = gql`
         firstName
         imdbProfileLink
         lastName
-        profilePicture
       }
       description
       id
@@ -103,19 +97,18 @@ export const DELETE_SHOW = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation AddUser($input: UserInput) {
-    addUser(input: $input) {
-      displayName
-      email
-      id
-      firstName
-      isAdmin
-      lastName
-      profilePicture
-      username
-      password
-    }
+mutation Mutation($input: UserInput) {
+  addUser(input: $input) {
+    _id
+    displayName
+    email
+    firstName
+    isAdmin
+    lastName
+    username
+    token
   }
+}
 `;
 export const EDIT_USER = gql`
   mutation EditUser($input: UserInput) {
@@ -127,8 +120,8 @@ export const EDIT_USER = gql`
       isAdmin
       lastName
       password
-      profilePicture
       username
+      token
     }
   }
 `;
@@ -143,8 +136,8 @@ export const DELETE_USER = gql`
       lastName
       isAdmin
       password
-      profilePicture
       username
+      token
     }
   }
 `;

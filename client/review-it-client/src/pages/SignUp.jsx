@@ -28,16 +28,6 @@ const SignUpPage = ({ login }) => {
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
       .required(),
     isAdmin: Joi.boolean(),
-    profilePicture: Joi.object({
-      key: Joi.string().required(),
-      originalname: Joi.string().required(),
-      mimetype: Joi.string()
-        .valid("image/jpeg", "image/png", "image/gif")
-        .required(),
-      size: Joi.number()
-        .max(5 * 1024 * 1024)
-        .required(),
-    }).required(),
     displayName: Joi.string().min(1).max(20).required(),
   });
 
@@ -52,14 +42,13 @@ const SignUpPage = ({ login }) => {
       lastName: "",
       username: "",
       password: "",
-      isAdmin: "",
+      isAdmin: false,
       email: "",
-      profilePicture: "",
       displayName: "",
     },
   });
 
-  const [addUser, { loading, error }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
   const [errMessage, setErrMessage] = useState("");
   const navigate = useNavigate();
 
@@ -71,27 +60,24 @@ const SignUpPage = ({ login }) => {
       username,
       password,
       displayName,
-      profilePicture,
       isAdmin,
       email,
     } = data;
     try {
-      const res = await addUser({
-        variables: {
-          input: {
-            firstName,
-            lastName,
-            username,
-            password,
-            displayName,
-            profilePicture,
-            isAdmin,
-            email,
-          },
-        },
-      });
-      login(res.data.addUser);
-      navigate("/");
+      const result = await addUser({variables: {
+        input: {
+          firstName,
+          lastName,
+          username,
+          password,
+          displayName,
+          isAdmin,
+          email,
+        }
+      }})
+    console.log(result.data.addUser)
+      login(result.data.addUser);
+      navigate(`/profile/${result.data.addUser._id}`);
     } catch (err) {
       console.error(err);
       setErrMessage(err.message);
@@ -109,7 +95,7 @@ const SignUpPage = ({ login }) => {
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cum
         </p>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
           <label>First Name</label>
           <input
             {...register("firstName")}
@@ -150,14 +136,6 @@ const SignUpPage = ({ login }) => {
             name="displayName"
           />
           {errors.displayName && <span>This field is required</span>}
-          <label>Profile Picture</label>
-          <input
-            {...register("profilePicture")}
-            placeholder="Choose your Profile Picture"
-            type="file"
-            name="profilePicture"
-          />
-          {errors.profilePicture && <span>This field is required</span>}
           <label>Password</label>
           <input
             {...register("password")}
