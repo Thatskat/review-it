@@ -2,7 +2,6 @@ import { style, globalStyle } from "@vanilla-extract/css";
 import { variables } from "../styles/themes.css";
 
 export const home = style({
-  padding: "0 2rem",
   background: variables.colors.primary,
   color: variables.colors.secondary,
   display: "grid",
@@ -26,4 +25,8 @@ globalStyle(`${home} p`, {
   textTransform: "lowercase",
   padding: `2rem 0rem`,
   fontWeight: "bold"
+})
+
+export const swatch = style({
+ 
 })
