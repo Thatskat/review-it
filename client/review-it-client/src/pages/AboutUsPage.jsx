@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet";
 import * as styles from "./AboutUsPage.css";
 
+import testBlob from "../assets/blobs/testBlob.svg";
+import secondaryBlob from "../assets/blobs/secondaryBlob.svg"
+
 const AboutUsPage = () => {
   return (
     <div className={styles.aboutUs}>
@@ -9,6 +12,8 @@ const AboutUsPage = () => {
       </Helmet>
 
       <div>
+        <img src={testBlob} alt="brand blob"/>
+        <img src={secondaryBlob} alt="secondary blob" className={styles.blob}/>
         <h2>Let&apos;s take a closer look</h2>
         <div>
           <div>1</div>
@@ -19,13 +24,20 @@ const AboutUsPage = () => {
         </div>
       </div>
       <div>
-        <h1>About<br></br> Us</h1>
+        <h1>
+          About<br></br> Us
+        </h1>
         <p>
-          Ladies and gentlemen, in today&apos;s fast-paced digital age, social
-          media has revolutionized the way we consume and interact with
-          entertainment. Among the various forms of content sharing and
-          discussion, one exciting niche has emerged - the realm of social media
-          TV show reviews, epitomized by the platform Review It.
+          <span className={styles.highlightedText}>
+            Ladies and gentlemen, in today&apos;s fast-paced digital age, social
+            media has revolutionized the way we consume and interact with
+            entertainment.
+          </span>
+        </p>
+        <p>
+          Among the various forms of content sharing and discussion, one
+          exciting niche has emerged - the realm of social media TV show
+          reviews, epitomized by the platform Review It.
         </p>
         <p>
           In this age of infinite choices in the realm of television and

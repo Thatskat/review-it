@@ -20,3 +20,16 @@ globalStyle(`${aboutUs} p`, {
     textTransform: "lowercase",
     textAlign: "end",
   });
+
+  export const highlightedText = style({
+    color: variables.colors.brand,
+    textAlign: "end",
+    textTransform: "lowercase",
+    padding: `2rem 0rem`,
+    fontWeight: "bold",
+    overflow: ""
+  })
+
+  export const blob = style({
+    position: "absolute"
+  })

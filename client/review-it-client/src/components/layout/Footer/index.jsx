@@ -1,6 +1,8 @@
 import * as styles from "./index.css";
 import { Link } from "react-router-dom";
 
+import { AiFillInstagram, AiFillFacebook, AiFillTwitterSquare } from "react-icons/ai";
+
 const Footer = () => {
   return (
     <footer className={styles.footer}>
@@ -47,18 +49,18 @@ const Footer = () => {
         <ul>
           <li>
             {" "}
-            <a href="#" target="_blank" rel="noreferrer">
-              Instagram
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" title="instagram">
+              <AiFillInstagram />
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noreferrer">
-              Facebook
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" title="facebook">
+             <AiFillFacebook />
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noreferrer">
-              X
+            <a href="https://twitter.com/" target="_blank" rel="noreferrer" title="twitter">
+              <AiFillTwitterSquare />
             </a>
           </li>
         </ul>
