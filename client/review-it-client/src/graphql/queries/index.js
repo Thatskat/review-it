@@ -53,14 +53,6 @@ export const SEARCH_ACTOR_BY_LAST_NAME = gql`
 export const GET_TV_SHOW = gql`
   query Query($getTvShowId: ID) {
     getTvShow(id: $getTvShowId) {
-      cast {
-        _id
-        birthDate
-        firstName
-        imdbProfileLink
-        profilePicture
-        lastName
-      }
       description
       id
       episodeNo

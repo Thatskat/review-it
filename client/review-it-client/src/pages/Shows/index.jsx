@@ -13,7 +13,7 @@ const ShowsPage = () => {
   useEffect(() => {
     refetch();
   }, []);
-  console.log(data.getAllTvShows[0].id);
+  console.log(data);
 
   return (
     <div className={styles.showsPage}>
@@ -36,7 +36,7 @@ const ShowsPage = () => {
       <div className={styles.shows}>
         <div className={styles.showsGrid}>
           <Link
-            to={`/show/${data.getAllTvShows[0].id}`}
+            to={`/show/${data?.getAllTvShows[0].id}`}
             className={styles.card}
             title="Buffy the Vampire Slayer"
           >

@@ -12,7 +12,7 @@ import SignUpPage from "./pages/SignUp";
 import LoginPage from "./pages/Login";
 import ShowsPage from "./pages/Shows";
 import PopularShowsPage from "./pages/Shows/popular";
-import showDetails from "./pages/Shows/showDetails";
+import ShowDetails from "./pages/Shows/ShowDetails";
 import AboutUsPage from "./pages/AboutUsPage";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -77,7 +77,7 @@ function App() {
           <Route path="/login" element={<LoginPage login={handleLogin} />} />
           <Route path="/shows" element={<ShowsPage />} />
           <Route path="/shows/trending" element={<PopularShowsPage />} />
-          <Route path="/show/:showId" element={<showDetails user={user} />} />
+          <Route path="/show/:showId" element={<ShowDetails user={user} />} />
           <Route path="/about" element={<AboutUsPage />} />
           <Route
             path="/profile/:id"
