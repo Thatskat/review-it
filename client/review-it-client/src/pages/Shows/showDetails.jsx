@@ -1,6 +1,10 @@
-import React from 'react'
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const showDetails = () => {
+import { useQuery } from "@apollo/client";
+
+
+const showDetails = ({user}) => {
   return (
     <div>showDetails</div>
   )

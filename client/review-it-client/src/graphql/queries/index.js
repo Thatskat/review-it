@@ -51,19 +51,19 @@ export const SEARCH_ACTOR_BY_LAST_NAME = gql`
   }
 `;
 export const GET_TV_SHOW = gql`
-  query GetTvShow($getTvShowId: ID) {
+  query Query($getTvShowId: ID) {
     getTvShow(id: $getTvShowId) {
       cast {
         _id
         birthDate
         firstName
         imdbProfileLink
-        lastName
         profilePicture
+        lastName
       }
       description
-      episodeNo
       id
+      episodeNo
       imdbLink
       showPoster
       title
@@ -84,8 +84,8 @@ export const GET_ALL_TV_SHOWS = gql`
       }
       description
       episodeNo
-      imdbLink
       id
+      imdbLink
       showPoster
       title
     }
