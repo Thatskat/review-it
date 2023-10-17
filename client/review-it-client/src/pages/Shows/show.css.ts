@@ -31,15 +31,4 @@ export const showsGrid = style({
     margin: "1rem auto"
 })
 
-export const card = style({});
 
-globalStyle(`${card} img`, {
-  width: "10rem",
-  border: `${variables.colors.secondary} 6px solid`,
-  borderRadius: "20px",
-});
-
-globalStyle(`${card} h5`, {
-  margin: "0.5rem 0rem",
-  color: variables.colors.secondary
-});

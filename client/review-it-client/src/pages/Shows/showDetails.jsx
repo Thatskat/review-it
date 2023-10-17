@@ -17,7 +17,7 @@ const ShowDetails = ({ user }) => {
   return (
     <div>
       <Helmet>
-        <title>{data?.getTvShow.title} | review it</title>
+        <title>{`${data?.getTvShow.title} | review it`}</title>
       </Helmet>
       <h1>{data?.getTvShow.title}</h1>
       <p></p>

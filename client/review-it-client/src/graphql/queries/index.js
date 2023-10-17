@@ -64,24 +64,13 @@ export const GET_TV_SHOW = gql`
 `;
 
 export const GET_ALL_TV_SHOWS = gql`
-  query Query {
-    getAllTvShows {
-      cast {
-        _id
-        birthDate
-        firstName
-        imdbProfileLink
-        lastName
-        profilePicture
-      }
-      description
-      episodeNo
-      id
-      imdbLink
-      showPoster
-      title
-    }
+query Query {
+  getAllTvShows {
+    id
+    showPoster
+    title
   }
+}
 `;
 
 export const SEARCH_SHOW = gql`

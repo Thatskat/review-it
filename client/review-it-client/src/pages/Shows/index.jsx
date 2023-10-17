@@ -6,14 +6,14 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_TV_SHOWS } from "../../graphql/queries";
 import Skeleton from "react-loading-skeleton";
 
-import { Link } from "react-router-dom";
+import TvShowCard from "../../components/feature/TvShowCard";
 
 const ShowsPage = () => {
   const { loading, error, data, refetch } = useQuery(GET_ALL_TV_SHOWS);
   useEffect(() => {
     refetch();
   }, []);
-  console.log(data);
+  
 
   return (
     <div className={styles.showsPage}>
@@ -35,43 +35,7 @@ const ShowsPage = () => {
       </div>
       <div className={styles.shows}>
         <div className={styles.showsGrid}>
-      
-          <Link to="/" className={styles.card} title="Buffy the Vampire Slayer">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BY2MwOGIyZGYtNzgxZC00N2Q5LTllYjItM2U4MTkwMDBjYzUyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_FMjpg_UX500_.jpg"
-              alt="Buffy the Vampire Slayer"
-            />
-          </Link>
-          <Link to="/" className={styles.card} title="Buffy the Vampire Slayer">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BY2MwOGIyZGYtNzgxZC00N2Q5LTllYjItM2U4MTkwMDBjYzUyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_FMjpg_UX500_.jpg"
-              alt="Buffy the Vampire Slayer"
-            />
-          </Link>
-          <Link to="/" className={styles.card} title="Buffy the Vampire Slayer">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BY2MwOGIyZGYtNzgxZC00N2Q5LTllYjItM2U4MTkwMDBjYzUyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_FMjpg_UX500_.jpg"
-              alt="Buffy the Vampire Slayer"
-            />
-          </Link>
-          <Link to="/" className={styles.card} title="Buffy the Vampire Slayer">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BY2MwOGIyZGYtNzgxZC00N2Q5LTllYjItM2U4MTkwMDBjYzUyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_FMjpg_UX500_.jpg"
-              alt="Buffy the Vampire Slayer"
-            />
-          </Link>
-          <Link to="/" className={styles.card} title="Buffy the Vampire Slayer">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BY2MwOGIyZGYtNzgxZC00N2Q5LTllYjItM2U4MTkwMDBjYzUyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_FMjpg_UX500_.jpg"
-              alt="Buffy the Vampire Slayer"
-            />
-          </Link>
-          <Link to="/" className={styles.card} title="Buffy the Vampire Slayer">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BY2MwOGIyZGYtNzgxZC00N2Q5LTllYjItM2U4MTkwMDBjYzUyXkEyXkFqcGdeQXVyNzA5NjUyNjM@._V1_FMjpg_UX500_.jpg"
-              alt="Buffy the Vampire Slayer"
-            />
-          </Link>
+      {data ? data.getAllTvShows.map((show) => <TvShowCard key={show.id} showData={show} />) : <p>no data</p>}
         </div>
       </div>
     </div>
