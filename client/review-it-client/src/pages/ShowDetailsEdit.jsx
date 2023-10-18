@@ -24,8 +24,6 @@ const ShowDetailsEdit = ({ user }) => {
     },
   });
 
-  const { title, description, episodeNo } = data?.getTvShow;
-
   // GraphQL Mutation for updating a journal entry
   const [editTvShow] = useMutation(EDIT_TV_SHOW, {
     // update the cache to update the journal entry
@@ -89,11 +87,7 @@ const ShowDetailsEdit = ({ user }) => {
     description: Joi.string().min(1).max(1000).required(),
     episodeNo: Joi.number().min(0).required(),
     showPoster: Joi.string()
-      .pattern(
-        new RegExp(
-          "^https://m.media-amazon.com/images/M/[A-Za-z0-9]+@.?_?[A-Za-z0-9_]+.(jpg)$"
-        )
-      )
+      .pattern(new RegExp("^https://m.media-amazon.com/images/M/.*.(jpg)$"))
       .required(),
     imdbLink: Joi.string()
       .pattern(new RegExp(`^https:\/\/www\.imdb\.com\/title\/tt[0-9]+\/?$`))
@@ -117,7 +111,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter TV Show Title"
           type="text"
           name="title"
-          defaultValue={title}
+          defaultValue={data?.getTvShow.title}
         />
         <label>Description</label>
         <input
@@ -125,7 +119,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter TV Show Description"
           type="text"
           name="description"
-          defaultValue={description}
+          defaultValue={data?.getTvShow.description}
         />
         <label>Episode Number</label>
         <input
@@ -133,6 +127,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter the number of Episodes"
           type="number"
           name="episodeNo"
+          defaultValue={data?.getTvShow.episodeNo}
         />
         <label>Show Poster</label>
         <input
@@ -140,6 +135,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter the number of Episodes"
           type="test"
           name="showPoster"
+          defaultValue={data?.getTvShow.showPoster}
         />
         <label>iMDB Link</label>
         <input
@@ -147,8 +143,9 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="imdb link"
           type="test"
           name="imdbLink"
+          defaultValue={data?.getTvShow.imdbLink}
         />
-        <button type="submit">Confirm</button>
+        <button type="submit">Edit Show</button>
       </form>
     </div>
   );

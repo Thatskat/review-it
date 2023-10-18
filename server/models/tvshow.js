@@ -10,7 +10,7 @@ function validateShow(show) {
     showPoster: Joi.string()
       .pattern(
         new RegExp(
-          "^https://m.media-amazon.com/images/M/[A-Za-z0-9]+@.?_?[A-Za-z0-9_]+.(jpg)$"
+          "^https://m\.media-amazon\.com/images/M/.*\.(jpg)$"
         )
       )
       .required(),
@@ -39,7 +39,7 @@ const tvShowSchema = new Schema({
     type: String,
     field: {
       $regex:
-        "^https://m.media-amazon.com/images/M/[A-Za-z0-9]+@.?_?[A-Za-z0-9_]+.(jpg)$",
+        "^https://m\.media-amazon\.com/images/M/.*\.(jpg)$",
     },
     required: true,
     trim: true,

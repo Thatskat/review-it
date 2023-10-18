@@ -49,7 +49,6 @@ const tvShowResolver = {
             `Error: An error has ocurred adding the thv show to the database. More Info: ${error.details[0].message}`
           );
         }
-        isAuthorized(user, context);
         let show = new TvShow(arguments.input);
         await show.save();
         return show;
