@@ -17,6 +17,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfile from "./pages/EditProfile";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
+import AddShowPage from "./pages/AddShowPage";
 import ShowEdit from "./pages/ShowEdit";
 import ShowDetailsEdit from "./pages/ShowDetailsEdit";
 import PageNotFound from "./pages/PageNotFound";
@@ -99,9 +100,15 @@ function App() {
             path="/admin-dashboard/edit/show"
             element={<ProtectedRoutes component={ShowEdit} user={user} />}
           />
-             <Route
+          <Route
             path="/admin-dashboard/edit/show/:id"
-            element={<ProtectedRoutes component={ShowDetailsEdit} user={user} />}
+            element={
+              <ProtectedRoutes component={ShowDetailsEdit} user={user} />
+            }
+          />
+          <Route
+            path="/admin-dashboard/add/show/"
+            element={<ProtectedRoutes component={AddShowPage} user={user} />}
           />
           <Route path="*" component={<PageNotFound />} />
         </Route>

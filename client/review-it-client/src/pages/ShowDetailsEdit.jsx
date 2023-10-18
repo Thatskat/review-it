@@ -24,6 +24,66 @@ const ShowDetailsEdit = ({ user }) => {
     },
   });
 
+  const { title, description, episodeNo } = data?.getTvShow;
+
+  // GraphQL Mutation for updating a journal entry
+  const [editTvShow] = useMutation(EDIT_TV_SHOW, {
+    // update the cache to update the journal entry
+    update(cache, { data: { editTvShow } }) {
+      // read the journal entry from the cache
+      const { getTvShow } = cache.readQuery({
+        query: GET_TV_SHOW,
+        variables: { id: id },
+      }) || { getTvShow: null };
+      // write the updated journal entry to the cache
+      if (getTvShow) {
+        // write the updated journal entry to the cache
+        cache.writeQuery({
+          query: GET_TV_SHOW,
+          variables: { id: id },
+          data: {
+            getTvShow: {
+              ...getTvShow,
+              ...editTvShow,
+            },
+          },
+        });
+      }
+    },
+  });
+
+  const onSubmit = async (formData, e) => {
+    console.log("click");
+    e.preventDefault();
+    const { title, description, episodeNo, showPoster, imdbLink } = formData;
+    console.log(formData);
+    try {
+      await editTvShow({
+        variables: {
+          input: {
+            title,
+            description,
+            episodeNo,
+            showPoster,
+            imdbLink,
+            user: user.id,
+          },
+          editTvShowId: {
+            id,
+          },
+        },
+        context: {
+          headers: {
+            authorization: user.token,
+          },
+        },
+      });
+      navigate("/admin-dashboard/edit/show");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const showSchema = Joi.object({
     title: Joi.string().min(1).max(100).required(),
     description: Joi.string().min(1).max(1000).required(),
@@ -40,99 +100,54 @@ const ShowDetailsEdit = ({ user }) => {
       .required(),
   });
 
-  const {
-    watch,
-    handleSubmit,
-    register,
-    setValue,
-    formState: { errors },
-  } = useForm({
+  const { handleSubmit, register } = useForm({
     resolver: joiResolver(showSchema),
-    defaultValues: {
-      title: data?.getTvShow.title,
-      description: data?.getTvShow.description,
-      episodeNo: data?.getTvShow.episodeNo,
-      showPoster: data?.getTvShow.showPoster,
-      imdbLink: data?.getTvShow.imdbLink,
-    },
   });
 
-  const [editTvShow, { loading, error }] = useMutation(EDIT_TV_SHOW);
-
-  const onSubmit = async (formData, e) => {
-    e.preventDefault();
-    const { title, description, episodeNo, showPoster, imdbLink } = formData;
-    try {
-      const res = await editTvShow({
-        variables: {
-          input: {
-            title,
-            description,
-            episodeNo,
-            showPoster,
-            imdbLink,
-          },
-          editTvShowId: {
-            id,
-          },
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <div>
       <Helmet>
         <title>{`edit "${data?.getTvShow.title}" | review it`}</title>
       </Helmet>
       <h1>Edit {data?.getTvShow.title}</h1>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate="novalidate">
         <label>Title</label>
         <input
           {...register("title")}
           placeholder="Enter TV Show Title"
           type="text"
           name="title"
-          defaultValue={data?.getTvShow.title}
+          defaultValue={title}
         />
-        {errors.title && <span>This field is required</span>}
         <label>Description</label>
         <input
           {...register("description")}
           placeholder="Enter TV Show Description"
           type="text"
           name="description"
-          defaultValue={data?.getTvShow.description}
+          defaultValue={description}
         />
-        {errors.description && <span>This field is required</span>}
         <label>Episode Number</label>
         <input
           {...register("episodeNo")}
           placeholder="Enter the number of Episodes"
           type="number"
           name="episodeNo"
-          defaultValue={data?.getTvShow.episodeNo}
         />
-        {errors.episodeNo && <span>This field is required</span>}
         <label>Show Poster</label>
         <input
           {...register("showPoster")}
           placeholder="Enter the number of Episodes"
-          type="text"
+          type="test"
           name="showPoster"
-          defaultValue={data?.getTvShow.showPoster}
         />
-        {errors.showPoster && <span>This field is required</span>}
         <label>iMDB Link</label>
         <input
           {...register("imdbLink")}
           placeholder="imdb link"
-          type="text"
+          type="test"
           name="imdbLink"
-          defaultValue={data?.getTvShow.imdbLink}
         />
-        {errors.imdbLink && <span>This field is required</span>}
         <button type="submit">Confirm</button>
       </form>
     </div>
