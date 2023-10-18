@@ -56,21 +56,25 @@ const tvShowResolver = {
         console.error("Error has ocurred adding a new show", err);
       }
     },
-    editTvShow: async (root, arguments, context) => {
+    editTvShow: async (root, { id }, arguments, context) => {
       try {
-        isAuthenticatedUser(context);
+        let show = await TvShow.findById(id);
+        if (!show) {
+          console.error("Error: TV Show not Found");
+        }
         const { error } = validate(arguments.input);
         if (error) {
           console.error(
             `Error: An error has ocurred editing a pre-existing tv show in the database. More Info: ${error.details[0].message}`
           );
         }
-        isAuthorized(user, context);
-        return await TvShow.findByIdAndUpdate(
-          arguments.input.id,
+
+        const updatedShow = await TvShow.findByIdAndUpdate(
+          id,
           arguments.input,
           { new: true }
         );
+        return updatedShow;
       } catch (err) {
         console.error("Error has ocurred editing pre-existing show.", err);
       }

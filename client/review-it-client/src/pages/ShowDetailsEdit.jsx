@@ -26,19 +26,19 @@ const ShowDetailsEdit = ({ user }) => {
 
   // GraphQL Mutation for updating a journal entry
   const [editTvShow] = useMutation(EDIT_TV_SHOW, {
-    // update the cache to update the journal entry
     update(cache, { data: { editTvShow } }) {
-      // read the journal entry from the cache
       const { getTvShow } = cache.readQuery({
         query: GET_TV_SHOW,
-        variables: { id: id },
+        variables: {
+          getTvShowId: id,
+        },
       }) || { getTvShow: null };
-      // write the updated journal entry to the cache
       if (getTvShow) {
-        // write the updated journal entry to the cache
         cache.writeQuery({
           query: GET_TV_SHOW,
-          variables: { id: id },
+          variables: {
+            getTvShowId: id,
+          },
           data: {
             getTvShow: {
               ...getTvShow,
@@ -51,22 +51,18 @@ const ShowDetailsEdit = ({ user }) => {
   });
 
   const onSubmit = async (formData, e) => {
-    console.log("click");
     e.preventDefault();
     const { title, description, episodeNo, showPoster, imdbLink } = formData;
-    console.log(formData);
     try {
-      await editTvShow({
+      const res = await editTvShow({
         variables: {
+          editTvShowId: id,
           input: {
             title,
             description,
             episodeNo,
             showPoster,
             imdbLink,
-          },
-          editTvShowId: {
-            id,
           },
         },
         context: {
@@ -75,6 +71,8 @@ const ShowDetailsEdit = ({ user }) => {
           },
         },
       });
+      console.log(episodeNo);
+      console.log(res.data);
       navigate("/admin-dashboard/edit/show");
     } catch (err) {
       console.log(err);
@@ -121,7 +119,6 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter TV Show Title"
           type="text"
           name="title"
-          defaultValue={data?.getTvShow.title}
         />
         {errors.title && <span>This field is required</span>}
         <label>Description</label>
@@ -130,7 +127,6 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter TV Show Description"
           type="text"
           name="description"
-          defaultValue={data?.getTvShow.description}
         />
         {errors.description && <span>This field is required</span>}
         <label>Episode Number</label>
@@ -139,7 +135,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter the number of Episodes"
           type="number"
           name="episodeNo"
-          defaultValue={data?.getTvShow.episodeNo}
+          onChange={(e) => console.log(e.target.value)}
         />
         {errors.episodeNo && <span>This field is required</span>}
         <label>Show Poster</label>
@@ -148,7 +144,6 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter the number of Episodes"
           type="test"
           name="showPoster"
-          defaultValue={data?.getTvShow.showPoster}
         />
         {errors.showPoster && <span>This field is required</span>}
         <label>iMDB Link</label>
@@ -157,7 +152,6 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="imdb link"
           type="test"
           name="imdbLink"
-          defaultValue={data?.getTvShow.imdbLink}
         />
         {errors.imdbLink && <span>This field is required</span>}
         <button type="submit">Edit Show</button>

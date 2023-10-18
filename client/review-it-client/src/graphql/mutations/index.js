@@ -37,29 +37,29 @@ export const DELETE_ACTOR = gql`
 `;
 
 export const ADD_TV_SHOW = gql`
-mutation Mutation($input: tvShowInput) {
-  addTvShow(input: $input) {
-    description
-    episodeNo
-    id
-    imdbLink
-    showPoster
-    title
+  mutation Mutation($input: tvShowInput) {
+    addTvShow(input: $input) {
+      description
+      episodeNo
+      id
+      imdbLink
+      showPoster
+      title
+    }
   }
-}
 `;
 
 export const EDIT_TV_SHOW = gql`
-mutation Mutation($input: tvShowInput, $editTvShowId: ID!) {
-  editTvShow(input: $input, id: $editTvShowId) {
-    description
-    episodeNo
-    id
-    imdbLink
-    showPoster
-    title
+  mutation Mutation($editTvShowId: ID!, $input: tvShowInput) {
+    editTvShow(id: $editTvShowId, input: $input) {
+      id
+      title
+      description
+      episodeNo
+      showPoster
+      imdbLink
+    }
   }
-}
 `;
 
 export const DELETE_SHOW = gql`
