@@ -25,33 +25,9 @@ const ShowDetailsEdit = ({ user }) => {
   });
 
   // GraphQL Mutation for updating a journal entry
-  const [editTvShow] = useMutation(EDIT_TV_SHOW, {
-    update(cache, { data: { editTvShow } }) {
-      const { getTvShow } = cache.readQuery({
-        query: GET_TV_SHOW,
-        variables: {
-          getTvShowId: id,
-        },
-      }) || { getTvShow: null };
-      if (getTvShow) {
-        cache.writeQuery({
-          query: GET_TV_SHOW,
-          variables: {
-            getTvShowId: id,
-          },
-          data: {
-            getTvShow: {
-              ...getTvShow,
-              ...editTvShow,
-            },
-          },
-        });
-      }
-    },
-  });
+  const [editTvShow] = useMutation(EDIT_TV_SHOW);
 
-  const onSubmit = async (formData, e) => {
-    e.preventDefault();
+  const onSubmit = async (formData) => {
     const { title, description, episodeNo, showPoster, imdbLink } = formData;
     try {
       const res = await editTvShow({
@@ -71,7 +47,6 @@ const ShowDetailsEdit = ({ user }) => {
           },
         },
       });
-      console.log(episodeNo);
       console.log(res.data);
       navigate("/admin-dashboard/edit/show");
     } catch (err) {

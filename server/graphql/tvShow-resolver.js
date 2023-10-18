@@ -56,9 +56,9 @@ const tvShowResolver = {
         console.error("Error has ocurred adding a new show", err);
       }
     },
-    editTvShow: async (root, { id }, arguments, context) => {
+    editTvShow: async (root, arguments, context) => {
       try {
-        let show = await TvShow.findById(id);
+        let show = await TvShow.findById(arguments.id);
         if (!show) {
           console.error("Error: TV Show not Found");
         }
@@ -70,7 +70,7 @@ const tvShowResolver = {
         }
 
         const updatedShow = await TvShow.findByIdAndUpdate(
-          id,
+          arguments.id,
           arguments.input,
           { new: true }
         );
