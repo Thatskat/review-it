@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphql/mutations";
 
