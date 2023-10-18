@@ -41,5 +41,6 @@ globalStyle(`${loginPage} form input`, {
   marginLeft: "auto",
   padding: "0.5rem",
   borderRadius: 20,
+  border: `${variables.colors.secondary} 3px solid`
 });
 

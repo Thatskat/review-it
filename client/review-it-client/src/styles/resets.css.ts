@@ -6,7 +6,7 @@ globalStyle("*", {
   margin: 0,
   padding: 0,
   fontFamily: variables.fonts.body,
-  overflowX: "hidden"
+  overflowX: "hidden",
 });
 
 globalStyle("a", {
@@ -22,5 +22,24 @@ globalStyle("button", {
   width: "6rem",
   margin: "1rem auto",
   fontFamily: variables.fonts.brand,
-  color: variables.colors.secondary
-})
+  color: variables.colors.secondary,
+  transition: "all 0.5s ease-in",
+});
+
+globalStyle("button:hover", {
+  background: variables.colors.brandDark,
+  color: variables.colors.brand,
+});
+
+globalStyle("span", {
+  display: "block",
+  background: variables.colors.secondary,
+  width: "18.5rem",
+  color: variables.colors.primary,
+  padding: "0.5rem",
+  textTransform: "lowercase",
+});
+
+globalStyle("input:focus", {
+  outline: "none",
+});

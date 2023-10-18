@@ -75,7 +75,7 @@ const LoginPage = ({ login }) => {
             type="email"
             name="email"
           />
-          {errors.email && <span>This field is required</span>}
+          {errors.email && <span>Email is required to login</span>}
           <label>Password</label>
           <input
             {...register("password")}
@@ -83,7 +83,7 @@ const LoginPage = ({ login }) => {
             type="password"
             name="password"
           />
-          {errors.password && <span>This field is required</span>}
+          {errors.password && <span>Password is required </span>}
           <button type="submit">Login</button>
         </form>
       </div>
