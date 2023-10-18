@@ -11,7 +11,7 @@ const EditProfile = ({ user }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id != user?._id) {
+    if (id !== user?._id) {
       console.log("user do not match");
       navigate(`/profile/${user?._id}`);
     }
