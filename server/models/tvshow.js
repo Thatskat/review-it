@@ -7,11 +7,6 @@ function validateShow(show) {
     title: Joi.string().min(1).max(100).required(),
     description: Joi.string().min(1).max(1000).required(),
     episodeNo: Joi.number().min(0).required(),
-    cast: Joi.array()
-      .items(Joi.string().min(1).max(50))
-      .min(1)
-      .max(30)
-      .required(),
     showPoster: Joi.string()
       .pattern(
         new RegExp(
@@ -40,7 +35,6 @@ const tvShowSchema = new Schema({
     min: 1,
     required: true,
   },
-  cast: { type: [mongoose.Schema.Types.ObjectId], ref: "actors" },
   showPoster: {
     type: String,
     field: {

@@ -23,7 +23,7 @@ const tvShowType = gql`
   }
   type Mutation {
     addTvShow(input: tvShowInput): tvShowType
-    editTvShow(input: tvShowInput): tvShowType
+    editTvShow(id: ID!, input: tvShowInput): tvShowType
     deleteShow(id: ID!): tvShowType
   }
 `;

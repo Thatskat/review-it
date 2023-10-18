@@ -57,23 +57,16 @@ export const ADD_TV_SHOW = gql`
 `;
 
 export const EDIT_TV_SHOW = gql`
-  mutation EditTvShow($input: tvShowInput) {
-    editTvShow(input: $input) {
-      cast {
-        _id
-        birthDate
-        firstName
-        imdbProfileLink
-        lastName
-      }
-      description
-      episodeNo
-      id
-      imdbLink
-      showPoster
-      title
-    }
+mutation Mutation($input: tvShowInput, $editTvShowId: ID!) {
+  editTvShow(input: $input, id: $editTvShowId) {
+    description
+    episodeNo
+    id
+    imdbLink
+    showPoster
+    title
   }
+}
 `;
 
 export const DELETE_SHOW = gql`
