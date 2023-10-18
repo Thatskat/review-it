@@ -63,21 +63,14 @@ export const EDIT_TV_SHOW = gql`
 `;
 
 export const DELETE_SHOW = gql`
-  mutation DeleteShow($deleteShowId: ID!) {
+  mutation Mutation($deleteShowId: ID!) {
     deleteShow(id: $deleteShowId) {
-      cast {
-        _id
-        birthDate
-        firstName
-        imdbProfileLink
-        lastName
-      }
       description
-      id
       episodeNo
+      id
+      imdbLink
       showPoster
       title
-      imdbLink
     }
   }
 `;

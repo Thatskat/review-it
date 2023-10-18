@@ -86,7 +86,6 @@ const tvShowResolver = {
         if (!show) {
           console.error("Error: No Tv Show Found");
         }
-        isAuthorized(user, context);
         return await TvShow.findByIdAndRemove(id);
       } catch (err) {
         console.error(

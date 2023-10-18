@@ -104,6 +104,7 @@ export const GET_USER = gql`
       isAdmin
       lastName
       username
+      token
     }
   }
 `;
