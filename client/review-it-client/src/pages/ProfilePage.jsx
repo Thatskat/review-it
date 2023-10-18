@@ -9,14 +9,24 @@ const ProfilePage = ({ user }) => {
   const { loading, error, data } = useQuery(GET_USER, {
     variables: { getUserId: id },
   });
-  console.log(data?.getUser);
+
   return (
     <div>
       <Helmet>
         <title>{`${data?.getUser.displayName}'s profile | review it`}</title>
       </Helmet>
       <h1>{data?.getUser.displayName}</h1>
-      <Link to={`/}`}>@{data?.getUser.username}</Link>
+      <p>@{data?.getUser.username}</p>
+      {user?._id == data?.getUser._id ? (
+        <Link to={`/profile/edit/${data?.getUser._id}`}>edit</Link>
+      ) : (
+        ""
+      )}
+      {user?.isAdmin === true ? (
+        <Link to="/admin-dashboard">Admin Dashboard</Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

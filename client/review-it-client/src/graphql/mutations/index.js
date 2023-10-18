@@ -111,17 +111,15 @@ export const ADD_USER = gql`
   }
 `;
 export const EDIT_USER = gql`
-  mutation EditUser($input: UserInput) {
-    editUser(input: $input) {
+  mutation Mutation($editUserId: ID!, $input: UserInput) {
+    editUser(id: $editUserId, input: $input) {
+      _id
       displayName
       email
-      id
       firstName
-      isAdmin
       lastName
-      password
       username
-      token
+      isAdmin
     }
   }
 `;
