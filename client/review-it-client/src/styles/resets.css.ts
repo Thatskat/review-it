@@ -20,10 +20,9 @@ globalStyle("button", {
   borderRadius: 20,
   padding: "0.5rem",
   width: "6rem",
-  margin: "1rem auto",
   fontFamily: variables.fonts.brand,
   color: variables.colors.secondary,
-  transition: "all 0.5s ease-in",
+  transition: "all 1s ease-in",
 });
 
 globalStyle("button:hover", {
