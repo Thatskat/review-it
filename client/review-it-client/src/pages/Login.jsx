@@ -49,16 +49,36 @@ const LoginPage = ({ login }) => {
         },
       });
       login(res.data.loginUser);
-      navigate(`/profile/${res.data.login._id}`);
+      navigate(`/profile/${res.data.loginUser._id}`);
     } catch (err) {
       console.error(err);
     }
   };
   return (
     <div>
-      <Helmet><title>login | review it</title></Helmet>
+      <Helmet>
+        <title>login | review it</title>
+      </Helmet>
       Login Page
-      <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate"></form>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
+        <label>Email</label>
+        <input
+          {...register("email")}
+          placeholder="Enter Email"
+          type="email"
+          name="email"
+        />
+        {errors.email && <span>This field is required</span>}
+        <label>Password</label>
+          <input
+            {...register("password")}
+            placeholder="Enter Password"
+            type="password"
+            name="password"
+          />
+          {errors.password && <span>This field is required</span>}
+          <button type="submit">Login</button>
+      </form>
     </div>
   );
 };

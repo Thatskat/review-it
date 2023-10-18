@@ -64,13 +64,13 @@ export const GET_TV_SHOW = gql`
 `;
 
 export const GET_ALL_TV_SHOWS = gql`
-query Query {
-  getAllTvShows {
-    id
-    showPoster
-    title
+  query Query {
+    getAllTvShows {
+      id
+      showPoster
+      title
+    }
   }
-}
 `;
 
 export const SEARCH_SHOW = gql`
@@ -95,16 +95,14 @@ export const SEARCH_SHOW = gql`
 `;
 
 export const GET_USER = gql`
-  query Query($getUserId: ID) {
+  query GetUser($getUserId: ID) {
     getUser(id: $getUserId) {
+      _id
       displayName
       email
       firstName
       isAdmin
-      id
-      password
       lastName
-      profilePicture
       username
     }
   }

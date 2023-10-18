@@ -36,7 +36,7 @@ const Header = ({ user, logout }) => {
           {user ? (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to={`/profile/${user._id}`}>My Profile</Link>
               </li>
               <button onClick={logout}>log out</button>
             </>

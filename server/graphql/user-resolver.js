@@ -11,10 +11,9 @@ const userResolver = {
         if (!user) {
           console.error("Error: No User has been found.");
         }
-        isAuthorized(user, context);
         return user;
       } catch (err) {
-        console.err(err);
+        console.error(err);
       }
     },
     searchUsers: async (root, { search }, context) => {

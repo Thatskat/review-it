@@ -6,7 +6,6 @@ import { GET_TV_SHOW } from "../../graphql/queries";
 
 const ShowDetails = ({ user }) => {
   const { showId } = useParams();
-  console.log(showId);
 
   const { loading, error, data } = useQuery(GET_TV_SHOW, {
     variables: { getTvShowId: showId },
