@@ -17,6 +17,8 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfile from "./pages/EditProfile";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
+import ShowEdit from "./pages/ShowEdit";
+import ShowDetailsEdit from "./pages/ShowDetailsEdit";
 import PageNotFound from "./pages/PageNotFound";
 
 const client = new ApolloClient({
@@ -92,6 +94,14 @@ function App() {
             element={
               <ProtectedRoutes component={AdminDashboardPage} user={user} />
             }
+          />
+          <Route
+            path="/admin-dashboard/edit/show"
+            element={<ProtectedRoutes component={ShowEdit} user={user} />}
+          />
+             <Route
+            path="/admin-dashboard/edit/show/:id"
+            element={<ProtectedRoutes component={ShowDetailsEdit} user={user} />}
           />
           <Route path="*" component={<PageNotFound />} />
         </Route>

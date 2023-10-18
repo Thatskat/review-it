@@ -21,4 +21,5 @@ globalStyle(`${dashboard} .subHeading`, {
 globalStyle(`${dashboard} .dashboardGrid`, {
     display: "grid",
     gridTemplateColumns: "repeat(3, 2fr)",
+    margin: '1rem auto'
 })

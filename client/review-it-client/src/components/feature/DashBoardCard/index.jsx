@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import * as styles from './DashBoardCard.css'
 
 const index = ({ url, type, description }) => {
   return (
-    <div>
+    <div className={styles.card}>
       <h2>
         <Link to={url}>{type}</Link>
       </h2>
