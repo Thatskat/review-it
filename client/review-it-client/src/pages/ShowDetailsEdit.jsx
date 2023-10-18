@@ -133,6 +133,7 @@ const ShowDetailsEdit = ({ user }) => {
           defaultValue={data?.getTvShow.imdbLink}
         />
         {errors.imdbLink && <span>This field is required</span>}
+        <button type="submit">Confirm</button>
       </form>
     </div>
   );

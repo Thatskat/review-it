@@ -40,14 +40,16 @@ const tvShowResolver = {
     },
   },
   Mutation: {
-    addTvShow: async (root, arguments) => {
+    addTvShow: async (root, arguments, context) => {
       try {
+        isAuthenticatedUser(context);
         const { error } = validate(arguments.input);
         if (error) {
           console.error(
             `Error: An error has ocurred adding the thv show to the database. More Info: ${error.details[0].message}`
           );
         }
+        isAuthorized(user, context);
         let show = new TvShow(arguments.input);
         await show.save();
         return show;
@@ -55,14 +57,16 @@ const tvShowResolver = {
         console.error("Error has ocurred adding a new show", err);
       }
     },
-    editTvShow: async (root, arguments) => {
+    editTvShow: async (root, arguments, context) => {
       try {
+        isAuthenticatedUser(context);
         const { error } = validate(arguments.input);
         if (error) {
           console.error(
             `Error: An error has ocurred editing a pre-existing tv show in the database. More Info: ${error.details[0].message}`
           );
         }
+        isAuthorized(user, context);
         return await TvShow.findByIdAndUpdate(
           arguments.input.id,
           arguments.input,
@@ -72,8 +76,14 @@ const tvShowResolver = {
         console.error("Error has ocurred editing pre-existing show.", err);
       }
     },
-    deleteShow: async (root, { id }) => {
+    deleteShow: async (root, { id }, context) => {
       try {
+        isAuthenticatedUser(context);
+        const show = await TvShow.findById(id);
+        if (!show) {
+          console.error("Error: No Tv Show Found");
+        }
+        isAuthorized(user, context);
         return await TvShow.findByIdAndRemove(id);
       } catch (err) {
         console.error(
@@ -85,4 +95,15 @@ const tvShowResolver = {
   },
 };
 
+function isAuthenticatedUser(context) {
+  if (!context.user) {
+    console.error("User is not authenticated.");
+  }
+}
+
+function isAuthorized(user, context) {
+  if (user._id.toString() !== context.user._id) {
+    console.error("User is not authorized to perform this action.");
+  }
+}
 module.exports = tvShowResolver;
