@@ -64,7 +64,6 @@ const ShowDetailsEdit = ({ user }) => {
             episodeNo,
             showPoster,
             imdbLink,
-            user: user.id,
           },
           editTvShowId: {
             id,
@@ -72,7 +71,7 @@ const ShowDetailsEdit = ({ user }) => {
         },
         context: {
           headers: {
-            authorization: user.token,
+            authorization: `${user.token}`,
           },
         },
       });
@@ -94,8 +93,19 @@ const ShowDetailsEdit = ({ user }) => {
       .required(),
   });
 
-  const { handleSubmit, register } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     resolver: joiResolver(showSchema),
+    defaultValues: {
+      title: data?.getTvShow.title,
+      description: data?.getTvShow.description,
+      episodeNo: data?.getTvShow.episodeNo,
+      showPoster: data?.getTvShow.showPoster,
+      imdbLink: data?.getTvShow.imdbLink,
+    },
   });
 
   return (
@@ -113,6 +123,7 @@ const ShowDetailsEdit = ({ user }) => {
           name="title"
           defaultValue={data?.getTvShow.title}
         />
+        {errors.title && <span>This field is required</span>}
         <label>Description</label>
         <input
           {...register("description")}
@@ -121,6 +132,7 @@ const ShowDetailsEdit = ({ user }) => {
           name="description"
           defaultValue={data?.getTvShow.description}
         />
+        {errors.description && <span>This field is required</span>}
         <label>Episode Number</label>
         <input
           {...register("episodeNo")}
@@ -129,6 +141,7 @@ const ShowDetailsEdit = ({ user }) => {
           name="episodeNo"
           defaultValue={data?.getTvShow.episodeNo}
         />
+        {errors.episodeNo && <span>This field is required</span>}
         <label>Show Poster</label>
         <input
           {...register("showPoster")}
@@ -137,6 +150,7 @@ const ShowDetailsEdit = ({ user }) => {
           name="showPoster"
           defaultValue={data?.getTvShow.showPoster}
         />
+        {errors.showPoster && <span>This field is required</span>}
         <label>iMDB Link</label>
         <input
           {...register("imdbLink")}
@@ -145,6 +159,7 @@ const ShowDetailsEdit = ({ user }) => {
           name="imdbLink"
           defaultValue={data?.getTvShow.imdbLink}
         />
+        {errors.imdbLink && <span>This field is required</span>}
         <button type="submit">Edit Show</button>
       </form>
     </div>
