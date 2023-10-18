@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphql/mutations";
+
+import * as styles from "./Login.css";
 
 const LoginPage = ({ login }) => {
   const schema = Joi.object({
@@ -54,30 +56,37 @@ const LoginPage = ({ login }) => {
     }
   };
   return (
-    <div>
+    <div className={styles.loginPage}>
       <Helmet>
         <title>login | review it</title>
       </Helmet>
-      Login Page
-      <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
-        <label>Email</label>
-        <input
-          {...register("email")}
-          placeholder="Enter Email"
-          type="email"
-          name="email"
-        />
-        {errors.email && <span>This field is required</span>}
-        <label>Password</label>
+
+      <div></div>
+      <div>
+        <h1>Login</h1>
+        <p>
+          Don&apos;t have an account?<Link to="/signup"> Sign up Here</Link>
+        </p>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
+          <label>Email</label>
+          <input
+            {...register("email")}
+            placeholder="Email"
+            type="email"
+            name="email"
+          />
+          {errors.email && <span>This field is required</span>}
+          <label>Password</label>
           <input
             {...register("password")}
-            placeholder="Enter Password"
+            placeholder="Password"
             type="password"
             name="password"
           />
           {errors.password && <span>This field is required</span>}
           <button type="submit">Login</button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
