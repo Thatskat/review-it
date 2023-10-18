@@ -33,10 +33,13 @@ globalStyle("button:hover", {
 globalStyle("span", {
   display: "block",
   background: variables.colors.secondary,
-  width: "18.5rem",
+  width: "15rem",
   color: variables.colors.primary,
-  padding: "0.5rem",
+  padding: "0.2rem",
   textTransform: "lowercase",
+  marginRight: "auto",
+  textAlign: "start",
+  marginTop: "0.5rem",
 });
 
 globalStyle("input:focus", {

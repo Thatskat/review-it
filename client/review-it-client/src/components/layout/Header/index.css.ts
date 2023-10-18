@@ -20,3 +20,12 @@ globalStyle(`${header} .navLinks ul li a`, {
   margin: "auto 1rem",
   fontFamily: variables.fonts.brand
 });
+
+export const displayName = style({
+ 
+});
+
+globalStyle(`${displayName} a p`, {
+  color: variables.colors.brand,
+  fontFamily: variables.fonts.brand
+})

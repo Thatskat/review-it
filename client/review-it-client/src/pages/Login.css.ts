@@ -10,9 +10,9 @@ export const loginPage = style({
 });
 
 globalStyle(`${loginPage} h1`, {
-  fontFamily: variables.fonts.brand,
-  fontSize: "7.594rem",
-  textAlign: "end",
+    fontFamily: variables.fonts.brand,
+    fontSize: "7.594rem",
+    textAlign: "end",
 });
 
 globalStyle(`${loginPage} p`, {

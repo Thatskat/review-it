@@ -19,8 +19,8 @@ const Header = ({ user, logout }) => {
   };
   return (
     <header className={styles.header}>
-      <div>
-        <Link to="/"> {user ? <p>{getRandomGreeting()} {user.displayName}</p> : ""}</Link>
+      <div className={styles.displayName}>
+        <Link to="/" > {user ? <p >{getRandomGreeting()} {user.displayName}</p> : ""}</Link>
       </div>
       <div className="navLinks">
         <ul>
