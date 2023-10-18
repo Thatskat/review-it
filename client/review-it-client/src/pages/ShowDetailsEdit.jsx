@@ -94,6 +94,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter TV Show Title"
           type="text"
           name="title"
+          defaultValue={data?.getTvShow.title}
         />
         {errors.title && <span>This field is required</span>}
         <label>Description</label>
@@ -102,6 +103,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter TV Show Description"
           type="text"
           name="description"
+          defaultValue={data?.getTvShow.description}
         />
         {errors.description && <span>This field is required</span>}
         <label>Episode Number</label>
@@ -110,7 +112,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter the number of Episodes"
           type="number"
           name="episodeNo"
-          onChange={(e) => console.log(e.target.value)}
+          defaultValue={data?.getTvShow.episodeNo}
         />
         {errors.episodeNo && <span>This field is required</span>}
         <label>Show Poster</label>
@@ -119,6 +121,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="Enter the number of Episodes"
           type="test"
           name="showPoster"
+          defaultValue={data?.getTvShow.showPoster}
         />
         {errors.showPoster && <span>This field is required</span>}
         <label>iMDB Link</label>
@@ -127,6 +130,7 @@ const ShowDetailsEdit = ({ user }) => {
           placeholder="imdb link"
           type="test"
           name="imdbLink"
+          defaultValue={data?.getTvShow.imdbLink}
         />
         {errors.imdbLink && <span>This field is required</span>}
         <button type="submit">Edit Show</button>

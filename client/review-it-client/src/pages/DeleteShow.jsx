@@ -7,12 +7,6 @@ import { DELETE_SHOW } from "../graphql/mutations";
 import context from "react-bootstrap/esm/AccordionContext";
 const DeleteShow = ({ user }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (user?.isAdmin !== true) {
-      navigate(`/profile/${user?._id}`);
-    }
-    refetch();
-  }, []);
 
   const [deleteShow] = useMutation(DELETE_SHOW, {
     context: {
@@ -43,12 +37,19 @@ const DeleteShow = ({ user }) => {
       if (res.errors) {
         console.err(res.errors[0].message);
       }
+      refetch();
     } catch (err) {
       console.error(err);
     }
   };
 
   const { data, refetch } = useQuery(GET_ALL_TV_SHOWS);
+
+  useEffect(() => {
+    if (user?.isAdmin !== true) {
+      navigate(`/profile/${user?._id}`);
+    }
+  }, []);
   return (
     <div>
       <Helmet>

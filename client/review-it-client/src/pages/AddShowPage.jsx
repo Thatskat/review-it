@@ -7,6 +7,8 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useMutation } from "@apollo/client";
 import { ADD_TV_SHOW } from "../graphql/mutations";
 
+import * as styles from "./AddShowPage.css";
+
 const AddShowPage = ({ user }) => {
   const navigate = useNavigate();
   const schema = Joi.object({
@@ -14,11 +16,7 @@ const AddShowPage = ({ user }) => {
     description: Joi.string().min(1).max(1000).required(),
     episodeNo: Joi.number().min(0).required(),
     showPoster: Joi.string()
-      .pattern(
-        new RegExp(
-          "^https://m\.media-amazon\.com/images/M/.*\.(jpg)$"
-        )
-      )
+      .pattern(new RegExp("^https://m.media-amazon.com/images/M/.*.(jpg)$"))
       .required(),
     imdbLink: Joi.string()
       .pattern(new RegExp("^https://www.imdb.com/title/tt[0-9]+/?$"))
@@ -38,7 +36,6 @@ const AddShowPage = ({ user }) => {
       showPoster: "",
       imdbLink: "",
     },
-
   });
 
   const [addTvShow] = useMutation(ADD_TV_SHOW);
@@ -47,7 +44,6 @@ const AddShowPage = ({ user }) => {
   const onSubmit = async (data, e) => {
     e.preventDefault();
     const { title, description, episodeNo, showPoster, imdbLink } = data;
-    console.log(showPoster)
     try {
       const res = await addTvShow({
         variables: {
@@ -79,7 +75,7 @@ const AddShowPage = ({ user }) => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.addShowPage}>
       <Helmet>
         <title>add a tv show | review it</title>
       </Helmet>
