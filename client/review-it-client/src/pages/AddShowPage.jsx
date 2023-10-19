@@ -101,8 +101,8 @@ const AddShowPage = ({ user }) => {
           {errors.episodeNo && (
             <span>The number of episodes the show has is required</span>
           )}
-          {errors.showPoster && <span>The show post link must following this format: </span>}
-          {errors.imdbLink && <span>This field is required</span>}
+          {errors.showPoster && <span>The show poster link must be following this format: https://m.media-amazon.com/images/M/.*.(jpg)</span>}
+          {errors.imdbLink && <span>The tv show&apos;s imdb link must be in the following format: https://www.imdb.com/title/tt[0-9]+/? </span>}
         </div>
       </div>
 

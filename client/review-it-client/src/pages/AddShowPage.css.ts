@@ -1,6 +1,5 @@
 import { style, globalStyle } from "@vanilla-extract/css";
 import { variables } from "../styles/themes.css";
-import { global } from "@apollo/client/utilities/globals";
 
 export const addShowPage = style({
   background: variables.colors.primary,
