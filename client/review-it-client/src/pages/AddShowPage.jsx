@@ -7,8 +7,6 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useMutation } from "@apollo/client";
 import { ADD_TV_SHOW } from "../graphql/mutations";
 
-import { BiArrowBack } from "react-icons/bi";
-
 import * as styles from "./AddShowPage.css";
 
 const AddShowPage = ({ user }) => {
