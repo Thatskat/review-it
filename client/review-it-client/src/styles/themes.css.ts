@@ -6,10 +6,10 @@ export const variables = createGlobalTheme(":root", {
     body: "Poppins, sans-serif",
   },
   colors: {
-    primary: "#1D1A38",
-    secondary: "#E8BCB9",
-    brand: "#AE445A",
-    brandDark: "#662549",
+    primary: "#190019",
+    secondary: "#DFB6B2",
+    brand: "#854F6C",
+    brandDark: "#522B5B",
     highlight: "#F39F5A"
 
   },
