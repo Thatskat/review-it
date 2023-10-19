@@ -28,7 +28,7 @@ globalStyle(`${showsPage} .headerSection p`, {
 export const showsGrid = style({
     display: "grid",
     gridTemplateColumns: "repeat(7, 2fr)",
-    margin: "1rem auto"
+    margin: "1rem auto",
 })
 
 

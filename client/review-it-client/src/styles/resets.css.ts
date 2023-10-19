@@ -19,7 +19,7 @@ globalStyle("button", {
   border: "none",
   borderRadius: 20,
   padding: "0.5rem",
-  width: "6rem",
+  width: "10rem",
   fontFamily: variables.fonts.brand,
   color: variables.colors.secondary,
   transition: "all 1s ease-in",

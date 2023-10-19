@@ -21,12 +21,12 @@ const ProfilePage = ({ user }) => {
       <h1>{data?.getUser.displayName}</h1>
       <p>@{data?.getUser.username}</p>
       {user?._id == data?.getUser._id ? (
-        <Link to={`/profile/edit/${data?.getUser._id}`}>edit</Link>
+        <Link to={`/profile/edit/${data?.getUser._id}`}><button>Edit Profile</button></Link>
       ) : (
         ""
       )}
       {user?.isAdmin === true ? (
-        <Link to="/admin-dashboard">Admin Dashboard</Link>
+        <Link to="/admin-dashboard"><button>Admin Dashboard</button></Link>
       ) : (
         ""
       )}
