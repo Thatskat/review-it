@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_TV_SHOW } from "../graphql/queries";
 import { EDIT_TV_SHOW } from "../graphql/mutations";
+
+import * as styles from "./AddShowPage.css";
 
 const ShowDetailsEdit = ({ user }) => {
   const { id } = useParams();
@@ -82,59 +84,78 @@ const ShowDetailsEdit = ({ user }) => {
   });
 
   return (
-    <div>
+    <div className={styles.addShowPage}>
       <Helmet>
         <title>{`edit "${data?.getTvShow.title}" | review it`}</title>
       </Helmet>
-      <h1>Edit {data?.getTvShow.title}</h1>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate="novalidate">
-        <label>Title</label>
-        <input
-          {...register("title")}
-          placeholder="Enter TV Show Title"
-          type="text"
-          name="title"
-          defaultValue={data?.getTvShow.title}
-        />
-        {errors.title && <span>This field is required</span>}
-        <label>Description</label>
-        <input
-          {...register("description")}
-          placeholder="Enter TV Show Description"
-          type="text"
-          name="description"
-          defaultValue={data?.getTvShow.description}
-        />
-        {errors.description && <span>This field is required</span>}
-        <label>Episode Number</label>
-        <input
-          {...register("episodeNo")}
-          placeholder="Enter the number of Episodes"
-          type="number"
-          name="episodeNo"
-          defaultValue={data?.getTvShow.episodeNo}
-        />
-        {errors.episodeNo && <span>This field is required</span>}
-        <label>Show Poster</label>
-        <input
-          {...register("showPoster")}
-          placeholder="Enter the number of Episodes"
-          type="test"
-          name="showPoster"
-          defaultValue={data?.getTvShow.showPoster}
-        />
-        {errors.showPoster && <span>This field is required</span>}
-        <label>iMDB Link</label>
-        <input
-          {...register("imdbLink")}
-          placeholder="imdb link"
-          type="test"
-          name="imdbLink"
-          defaultValue={data?.getTvShow.imdbLink}
-        />
-        {errors.imdbLink && <span>This field is required</span>}
-        <button type="submit">Edit Show</button>
-      </form>
+      <div>
+        <Link to="/admin-dashboard/edit/show">Back to edit show overview</Link>
+        <h1>Edit {data?.getTvShow.title}</h1>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate="novalidate">
+          <label>Title</label>
+          <input
+            {...register("title")}
+            placeholder="Enter TV Show Title"
+            type="text"
+            name="title"
+            defaultValue={data?.getTvShow.title}
+          />
+          <label>Description</label>
+          <input
+            {...register("description")}
+            placeholder="Enter TV Show Description"
+            type="text"
+            name="description"
+            defaultValue={data?.getTvShow.description}
+          />
+          <label>Episode Number</label>
+          <input
+            {...register("episodeNo")}
+            placeholder="Enter the number of Episodes"
+            type="number"
+            name="episodeNo"
+            defaultValue={data?.getTvShow.episodeNo}
+          />
+          <label>Show Poster</label>
+          <input
+            {...register("showPoster")}
+            placeholder="Enter the number of Episodes"
+            type="test"
+            name="showPoster"
+            defaultValue={data?.getTvShow.showPoster}
+          />
+          <label>iMDB Link</label>
+          <input
+            {...register("imdbLink")}
+            placeholder="imdb link"
+            type="test"
+            name="imdbLink"
+            defaultValue={data?.getTvShow.imdbLink}
+          />
+          <button type="submit">Edit Show</button>
+        </form>
+      </div>
+      <div className="errorsGrid">
+        {errors.title && <span>Error: The tv show title is required</span>}
+        {errors.description && (
+          <span>Error: A description of the tv show is required</span>
+        )}
+        {errors.episodeNo && (
+          <span>Error: The number of episodes the show has is required</span>
+        )}
+        {errors.showPoster && (
+          <span>
+            Error: The show poster link must be following this format:
+            https://m.media-amazon.com/images/M/.*.(jpg)
+          </span>
+        )}
+        {errors.imdbLink && (
+          <span>
+            Error: The tv show&apos;s imdb link must be in the following format:
+            https://www.imdb.com/title/tt[0-9]+/?{" "}
+          </span>
+        )}
+      </div>
     </div>
   );
 };

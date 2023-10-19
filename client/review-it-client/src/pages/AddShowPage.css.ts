@@ -17,7 +17,10 @@ globalStyle(`${addShowPage} a`, {
 globalStyle(`${addShowPage} h1`, {
   fontFamily: variables.fonts.brand,
   fontSize: "4rem",
-  margin: "1rem 0"
+});
+
+globalStyle(`${addShowPage} form`, {
+  height: "50vh",
 });
 
 globalStyle(`${addShowPage} form label`, {
@@ -25,27 +28,26 @@ globalStyle(`${addShowPage} form label`, {
 });
 
 globalStyle(`${addShowPage} form input`, {
-  textAlign: "end",
+  textAlign: "start",
   display: "block",
   textTransform: "lowercase",
   width: "40rem",
   background: "#ffffff",
   margin: "1rem 0",
-  marginLeft: "auto",
+  marginRight: "auto",
   padding: "0.5rem",
   borderRadius: 20,
-  border: `${variables.colors.secondary} 3px solid`
+  border: `${variables.colors.secondary} 3px solid`,
+  color: variables.colors.primary
 })
 
 globalStyle(`${addShowPage} form button`, {
   width: "10rem",
   marginTop: "1rem",
-  marginRight: "auto !important"
+ marginRight: "0 !important"
 })
 
 globalStyle(`${addShowPage} .errorsGrid`, {
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 0fr)",
-  gap: 1,
-  margin: "auto"
+  margin: "auto",
+  marginTop: "7.5rem"
 })

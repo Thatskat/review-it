@@ -33,7 +33,7 @@ globalStyle("button:hover", {
 globalStyle("span", {
   display: "block",
   background: variables.colors.secondary,
-  width: "15rem",
+  width: "40rem",
   color: variables.colors.primary,
   padding: "0.2rem",
   textTransform: "lowercase",

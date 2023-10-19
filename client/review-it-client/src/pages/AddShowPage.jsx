@@ -83,71 +83,72 @@ const AddShowPage = ({ user }) => {
       <div>
         <Link to="/admin-dashboard">Back to Admin Dashboard</Link>
         <h1>Add a TV Show</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque nihil
-          aspernatur esse reiciendis aperiam doloribus incidunt architecto culpa
-          quod quidem inventore maiores corporis assumenda minima nesciunt
-          numquam nostrum expedita dolorum sint atque natus tenetur, excepturi
-          autem non? Voluptates, dolorum nisi.
-        </p>
-        {errors && <p>Please fix the following:</p>}
-        <div className="errorsGrid">
-          {errors.title && <span>The tv show title is required</span>}
-          {errors.description && (
-            <span>A description of the tv show is required</span>
-          )}
-          {errors.episodeNo && (
-            <span>The number of episodes the show has is required</span>
-          )}
-          {errors.showPoster && <span>The show poster link must be following this format: https://m.media-amazon.com/images/M/.*.(jpg)</span>}
-          {errors.imdbLink && <span>The tv show&apos;s imdb link must be in the following format: https://www.imdb.com/title/tt[0-9]+/? </span>}
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label>TV Show Title</label>
+          <input
+            {...register("title")}
+            placeholder="Enter TV Show Title"
+            type="text"
+            name="title"
+          />
+
+          <label>TV Show Description</label>
+          <input
+            {...register("description")}
+            placeholder="Enter TV Show Description"
+            type="text"
+            name="description"
+          />
+
+          <label>Episode Number</label>
+          <input
+            {...register("episodeNo")}
+            placeholder="Enter the number of Episodes"
+            type="number"
+            name="episodeNo"
+            min="1"
+          />
+
+          <label>TV Show Poster</label>
+          <input
+            {...register("showPoster")}
+            placeholder="Enter the Show Poster Link"
+            type="text"
+            name="showPoster"
+          />
+
+          <label>TV Show iMDB Link</label>
+          <input
+            {...register("imdbLink")}
+            placeholder="Enter the Tv Show's IMDB Link"
+            type="text"
+            name="imdbLink"
+          />
+
+          <button type="submit">Add show</button>
+        </form>
       </div>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>TV Show Title</label>
-        <input
-          {...register("title")}
-          placeholder="Enter TV Show Title"
-          type="text"
-          name="title"
-        />
-
-        <label>TV Show Description</label>
-        <input
-          {...register("description")}
-          placeholder="Enter TV Show Description"
-          type="text"
-          name="description"
-        />
-
-        <label>Episode Number</label>
-        <input
-          {...register("episodeNo")}
-          placeholder="Enter the number of Episodes"
-          type="number"
-          name="episodeNo"
-          min="1"
-        />
-
-        <label>TV Show Poster</label>
-        <input
-          {...register("showPoster")}
-          placeholder="Enter the Show Poster Link"
-          type="text"
-          name="showPoster"
-        />
-
-        <label>TV Show iMDB Link</label>
-        <input
-          {...register("imdbLink")}
-          placeholder="Enter the Tv Show's IMDB Link"
-          type="text"
-          name="imdbLink"
-        />
-
-        <button type="submit">Add show</button>
-      </form>
+      <div className="errorsGrid">
+        {errors.title && <span>Error: The tv show title is required</span>}
+        {errors.description && (
+          <span>Error: A description of the tv show is required</span>
+        )}
+        {errors.episodeNo && (
+          <span>Error: The number of episodes the show has is required</span>
+        )}
+        {errors.showPoster && (
+          <span>
+            Error: The show poster link must be following this format:
+            https://m.media-amazon.com/images/M/.*.(jpg)
+          </span>
+        )}
+        {errors.imdbLink && (
+          <span>
+            Error: The tv show&apos;s imdb link must be in the following format:
+            https://www.imdb.com/title/tt[0-9]+/?{" "}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
