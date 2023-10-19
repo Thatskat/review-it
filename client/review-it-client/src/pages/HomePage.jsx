@@ -1,7 +1,7 @@
 import * as styles from "./HomePage.css";
 import { Helmet } from "react-helmet";
 
-import asterisk from "../assets/asterisk.svg";
+import testBlob from '../assets/blobs/testBlob.svg'
 
 const HomePage = () => {
   return (
@@ -10,7 +10,7 @@ const HomePage = () => {
         <title>home | review it</title>
       </Helmet>
       <div className={styles.home}>
-        <div className={styles.swatch}><img src={asterisk}/></div>
+        <div className={styles.swatch}><img src={testBlob}/></div>
         <div>
           <h1>
             Review <br></br>It
