@@ -4,7 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ALL_TV_SHOWS } from "../graphql/queries";
 import { DELETE_SHOW } from "../graphql/mutations";
-import context from "react-bootstrap/esm/AccordionContext";
+
+import * as styles from "./DeleteShow.css";
 const DeleteShow = ({ user }) => {
   const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ const DeleteShow = ({ user }) => {
     }
   }, []);
   return (
-    <div>
+    <div className={styles.deletePage}>
       <Helmet>
         <title>delete a tv show | review it</title>
       </Helmet>
@@ -60,6 +61,7 @@ const DeleteShow = ({ user }) => {
       {data ? (
         data.getAllTvShows.map((show) => (
           <div key={show.id}>
+            <img src={show.showPoster}/>
             {show.title}
             <button onClick={() => handleDelete(show.id)}>delete</button>
           </div>
