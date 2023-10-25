@@ -6,14 +6,12 @@ const actorType = gql`
     _id: ID
     firstName: String!
     lastName: String!
-    birthDate: Date!
     imdbProfileLink: String!
     profilePicture: String!
   }
   input ActorInput {
     firstName: String!
     lastName: String!
-    birthDate: Date!
     imdbProfileLink: String!
     profilePicture: String!
   }

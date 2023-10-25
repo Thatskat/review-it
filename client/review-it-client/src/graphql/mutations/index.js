@@ -4,10 +4,10 @@ export const ADD_ACTOR = gql`
   mutation Mutation($input: ActorInput) {
     addActor(input: $input) {
       _id
-      birthDate
       firstName
       imdbProfileLink
       lastName
+      profilePicture
     }
   }
 `;

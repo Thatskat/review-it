@@ -8,7 +8,6 @@ function validate(actor) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
     lastName: Joi.string().min(2).max(20).required(),
-
     imdbProfileLink: Joi.string()
       .pattern(new RegExp(`^https:\/\/www\.imdb\.com\/name\/nm[0-9]+\/?$`))
       .required(),
