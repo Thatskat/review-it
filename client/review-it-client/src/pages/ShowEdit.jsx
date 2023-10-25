@@ -5,6 +5,7 @@ import * as styles from "./EditShow.css";
 
 import { useQuery } from "@apollo/client";
 import { GET_ALL_TV_SHOWS } from "../graphql/queries";
+import EditCard from "../components/common/EditCard";
 
 const ShowEdit = ({ user }) => {
   const navigate = useNavigate();
@@ -26,19 +27,19 @@ const ShowEdit = ({ user }) => {
         Back to admin dashboard
       </Link>
       <h1>Edit a Show</h1>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint ad temporibus, ipsum maxime quos nostrum laudantium accusantium quisquam dolore voluptate.</p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint ad
+        temporibus, ipsum maxime quos nostrum laudantium accusantium quisquam
+        dolore voluptate.
+      </p>
       <div className={styles.showsGrid}>
         {data &&
           data.getAllTvShows.map((show) => (
-            <Link
+            <EditCard
+              show={show}
               key={show.id}
-              showData={show}
-              to={`/admin-dashboard/edit/show/${show.id}`}
-              className={styles.showCard}
-            >
-              <img src={show.showPoster} alt={`${show.title} Poster`} />
-              {show.title}
-            </Link>
+              link={`/admin-dashboard/edit/show/${show.id}`}
+            />
           ))}
       </div>
     </div>

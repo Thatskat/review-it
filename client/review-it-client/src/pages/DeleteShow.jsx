@@ -6,6 +6,8 @@ import { GET_ALL_TV_SHOWS } from "../graphql/queries";
 import { DELETE_SHOW } from "../graphql/mutations";
 
 import * as styles from "./DeleteShow.css";
+import DeleteCard from "../components/common/DeleteCard";
+
 const DeleteShow = ({ user }) => {
   const navigate = useNavigate();
 
@@ -58,17 +60,7 @@ const DeleteShow = ({ user }) => {
       </Helmet>
       <Link to="/admin-dashboard">Back to admin dashboard</Link>
       <h1>Delete a TV Show</h1>
-      {data ? (
-        data.getAllTvShows.map((show) => (
-          <div key={show.id}>
-            <img src={show.showPoster}/>
-            {show.title}
-            <button onClick={() => handleDelete(show.id)}>delete</button>
-          </div>
-        ))
-      ) : (
-        <p>no data</p>
-      )}
+      {data ? data.getAllTvShows.map((show) => <DeleteCard key={show.id} show={show} />) : <p>no data</p>}
     </div>
   );
 };

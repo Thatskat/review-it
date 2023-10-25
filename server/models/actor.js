@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // IMPORT JOI VALIDATOR AND JOI DATA VALIDATOR
-const Joi = require("joi").extend(require('@joi/date'));
+const Joi = require("joi");
 
 // JOI VALIDATION FUNCTION
 function validate(actor) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(20).required(),
     lastName: Joi.string().min(2).max(20).required(),
-    birthDate: Joi.date().format("YYYY-MM-DD").utc().required(),
+
     imdbProfileLink: Joi.string()
       .pattern(new RegExp(`^https:\/\/www\.imdb\.com\/name\/nm[0-9]+\/?$`))
       .required(),
@@ -37,10 +37,6 @@ const actorSchema = new Schema({
     trim: true,
     required: true,
     lowercase: true,
-  },
-  birthDate: {
-    type: Date,
-    required: true,
   },
   imdbProfileLink: {
     type: String,

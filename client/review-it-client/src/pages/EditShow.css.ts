@@ -25,11 +25,3 @@ export const showsGrid = style({
   gap: "1rem",
 });
 
-export const showCard = style({
-  background: variables.colors.secondary,
-  borderRadius: 20,
-});
-
-globalStyle(`${showCard} img`, {
-  maxWidth: "10rem",
-});
