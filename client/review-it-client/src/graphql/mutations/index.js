@@ -13,25 +13,25 @@ export const ADD_ACTOR = gql`
 `;
 
 export const EDIT_ACTOR = gql`
-  mutation EditActor($input: ActorInput) {
+  mutation Mutation($input: ActorInput) {
     editActor(input: $input) {
       _id
-      birthDate
       firstName
       imdbProfileLink
       lastName
+      profilePicture
     }
   }
 `;
 
 export const DELETE_ACTOR = gql`
-  mutation DeleteActor($deleteActorId: ID!) {
+  mutation Mutation($deleteActorId: ID!) {
     deleteActor(id: $deleteActorId) {
       _id
-      birthDate
       firstName
       imdbProfileLink
       lastName
+      profilePicture
     }
   }
 `;
