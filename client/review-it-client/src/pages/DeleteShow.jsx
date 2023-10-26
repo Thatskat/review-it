@@ -60,7 +60,15 @@ const DeleteShow = ({ user }) => {
       </Helmet>
       <Link to="/admin-dashboard">Back to admin dashboard</Link>
       <h1>Delete a TV Show</h1>
-      {data ? data.getAllTvShows.map((show) => <DeleteCard key={show._id} show={show} handleDelete={handleDelete} />) : <p>no data</p>}
+      <div className={styles.showGrid}>
+        {data ? (
+          data.getAllTvShows.map((show) => (
+            <DeleteCard key={show.id} show={show} handleDelete={handleDelete} />
+          ))
+        ) : (
+          <p>no data</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -17,3 +17,8 @@ globalStyle(`${deletePage} a`, {
     fontSize: "4rem",
     margin: "1rem 0"
   });
+
+  export const showGrid = style({
+    display: "grid",
+    gridTemplateColumns: "repeat(7, 2fr)",
+  })

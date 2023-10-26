@@ -6,6 +6,7 @@ import { FIND_ALL_ACTORS } from "../graphql/queries";
 import { DELETE_ACTOR } from "../graphql/mutations";
 
 import * as styles from "./DeleteShow.css";
+import DeleteCard from "../components/common/DeleteCard";
 
 const DeleteActor = ({ user }) => {
   const navigate = useNavigate();
@@ -58,7 +59,10 @@ const DeleteActor = ({ user }) => {
       </Helmet>
       <Link to="/admin-dashboard">Back to admin dashboard</Link>
       <h1>Delete an Actor</h1>
-      {data ? data.findAllActors.map((actor) => <div key={actor._id}>{actor.firstName}<button onClick={() => handleDelete(actor._id)}>Delete</button></div>) : <p>no data</p>}
+      <div className={styles.showGrid}>
+      {data ? data.findAllActors.map((actor) => <DeleteCard key={actor._id} show={actor} handleDelete={handleDelete} />) : <p>no data</p>}
+      </div>
+   
     </div>
   );
 };
