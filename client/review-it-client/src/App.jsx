@@ -24,6 +24,7 @@ import DeleteShow from "./pages/DeleteShow";
 import AddActor from "./pages/AddActor";
 import EditActor from "./pages/EditActor";
 import EditActorDetails from "./pages/EditActorDetails";
+import DeleteActor from "./pages/DeleteActor";
 import PageNotFound from "./pages/PageNotFound";
 
 const client = new ApolloClient({
@@ -128,7 +129,13 @@ function App() {
           />
           <Route
             path="/admin-dashboard/edit/actor/:id"
-            element={<ProtectedRoutes component={EditActorDetails} user={user} />}
+            element={
+              <ProtectedRoutes component={EditActorDetails} user={user} />
+            }
+          />
+          <Route
+            path="/admin-dashboard/delete/actor"
+            element={<ProtectedRoutes component={DeleteActor} user={user} />}
           />
           <Route path="*" component={<PageNotFound />} />
         </Route>

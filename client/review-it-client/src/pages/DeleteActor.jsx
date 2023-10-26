@@ -2,16 +2,15 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ALL_TV_SHOWS } from "../graphql/queries";
-import { DELETE_SHOW } from "../graphql/mutations";
+import { FIND_ALL_ACTORS } from "../graphql/queries";
+import { DELETE_ACTOR } from "../graphql/mutations";
 
 import * as styles from "./DeleteShow.css";
-import DeleteCard from "../components/common/DeleteCard";
 
-const DeleteShow = ({ user }) => {
+const DeleteActor = ({ user }) => {
   const navigate = useNavigate();
 
-  const [deleteShow] = useMutation(DELETE_SHOW, {
+  const [deleteActor] = useMutation(DELETE_ACTOR, {
     context: {
       headers: {
         authorization: `${user.token}`,
@@ -20,8 +19,8 @@ const DeleteShow = ({ user }) => {
     update(cache) {
       cache.modify({
         fields: {
-          tvShows(existingShows = [], { readField }) {
-            return existingShows.filter(
+          actors(existingActors = [], { readField }) {
+            return existingActors.filter(
               (entryRef) => data.id !== readField("id", entryRef)
             );
           },
@@ -30,11 +29,13 @@ const DeleteShow = ({ user }) => {
     },
   });
 
+  const { data, refetch } = useQuery(FIND_ALL_ACTORS);
+
   const handleDelete = async (id) => {
     try {
-      const res = await deleteShow({
+      const res = await deleteActor({
         variables: {
-          deleteShowId: id,
+          deleteActorId: id,
         },
       });
       if (res.errors) {
@@ -45,9 +46,6 @@ const DeleteShow = ({ user }) => {
       console.error(err);
     }
   };
-
-  const { data, refetch } = useQuery(GET_ALL_TV_SHOWS);
-
   useEffect(() => {
     if (user?.isAdmin !== true) {
       navigate(`/profile/${user?._id}`);
@@ -56,13 +54,13 @@ const DeleteShow = ({ user }) => {
   return (
     <div className={styles.deletePage}>
       <Helmet>
-        <title>delete a tv show | review it</title>
+        <title>delete an actor | review it</title>
       </Helmet>
       <Link to="/admin-dashboard">Back to admin dashboard</Link>
-      <h1>Delete a TV Show</h1>
-      {data ? data.getAllTvShows.map((show) => <DeleteCard key={show._id} show={show} handleDelete={handleDelete} />) : <p>no data</p>}
+      <h1>Delete an Actor</h1>
+      {data ? data.findAllActors.map((actor) => <div key={actor._id}>{actor.firstName}<button onClick={() => handleDelete(actor._id)}>Delete</button></div>) : <p>no data</p>}
     </div>
   );
 };
 
-export default DeleteShow;
+export default DeleteActor;
