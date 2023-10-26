@@ -130,6 +130,26 @@ const EditActorDetails = ({ user }) => {
           <button type="submit">Edit Actor</button>
         </form>
       </div>
+      <div className="errorsGrid">
+        {errors.firstName && (
+          <span>Error: The actor&apos;s first name is required</span>
+        )}
+        {errors.lastName && (
+          <span>Error: The actor&apos;s last name is required</span>
+        )}
+        {errors.profilePicture && (
+          <span>
+            Error: The profile picture link must be in the following format:
+            https://m.media-amazon.com/images/M/[A-Z0-9a-z_.@]+.jpg{" "}
+          </span>
+        )}
+        {errors.imdbProfileLink && (
+          <span>
+            Error: The actor&apos;s imdb link must be in the following format:
+            https:\/\/www\.imdb\.com\/name\/nm[0-9]+\/?
+          </span>
+        )}
+      </div>
     </div>
   );
 };
