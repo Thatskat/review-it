@@ -1,8 +1,6 @@
 import { Helmet } from "react-helmet";
 import * as styles from "./AboutUsPage.css";
 
-import testBlob from "../assets/blobs/testBlob.svg";
-import secondaryBlob from "../assets/blobs/secondaryBlob.svg"
 
 const AboutUsPage = () => {
   return (
