@@ -65,7 +65,7 @@ const LoginPage = ({ login }) => {
       <div>
         <h1>Login</h1>
         <p>
-          Don&apos;t have an account?<Link to="/signup"> Sign up Here</Link>
+          Don&apos;t have an account?<Link to="/signup" className="highlightLink"> Sign up Here</Link>
         </p>
         <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
           <label>Email</label>

@@ -44,3 +44,8 @@ globalStyle(`${loginPage} form input`, {
   border: `${variables.colors.secondary} 3px solid`
 });
 
+globalStyle(`${loginPage} .highlightLink`, {
+  color: variables.colors.highlight
+});
+
+
