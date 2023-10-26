@@ -71,6 +71,10 @@ const actorResolver = {
     },
     editActor: async (root, arguments) => {
       try {
+        let actor = await Actor.findById(arguments.id);
+        if (!actor) {
+          console.error("Error: Actor not found");
+        }
         const { error } = validate(arguments.input);
         if (error) {
           console.log(
@@ -78,7 +82,7 @@ const actorResolver = {
           );
         }
         return await Actor.findByIdAndUpdate(
-          arguments.input.id,
+          arguments.id,
           arguments.input,
           { new: true }
         );
@@ -90,7 +94,10 @@ const actorResolver = {
       try {
         return await Actor.findByIdAndRemove(id);
       } catch (err) {
-        console.error("Error has ocurred deleting actor from the database", err);
+        console.error(
+          "Error has ocurred deleting actor from the database",
+          err
+        );
       }
     },
   },

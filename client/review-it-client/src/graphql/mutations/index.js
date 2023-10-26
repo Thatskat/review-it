@@ -13,13 +13,13 @@ export const ADD_ACTOR = gql`
 `;
 
 export const EDIT_ACTOR = gql`
-  mutation Mutation($input: ActorInput) {
-    editActor(input: $input) {
+  mutation Mutation($input: ActorInput, $editActorId: ID!) {
+    editActor(input: $input, id: $editActorId) {
       _id
       firstName
-      imdbProfileLink
       lastName
       profilePicture
+      imdbProfileLink
     }
   }
 `;

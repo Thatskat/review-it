@@ -26,7 +26,6 @@ const ShowDetailsEdit = ({ user }) => {
     },
   });
 
-  // GraphQL Mutation for updating a journal entry
   const [editTvShow] = useMutation(EDIT_TV_SHOW);
 
   const onSubmit = async (formData) => {

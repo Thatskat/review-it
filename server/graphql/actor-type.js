@@ -23,7 +23,7 @@ const actorType = gql`
   }
   type Mutation {
     addActor(input: ActorInput): ActorType
-    editActor(input: ActorInput): ActorType
+    editActor(id: ID!, input: ActorInput): ActorType
     deleteActor(id: ID!): ActorType
   }
 `;
