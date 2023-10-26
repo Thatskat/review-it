@@ -4,7 +4,6 @@ export const FIND_ACTOR_BY_ID = gql`
   query ($findActorByIdId: ID!) {
     findActorById(id: $findActorByIdId) {
       _id
-      birthDate
       firstName
       imdbProfileLink
       lastName
@@ -13,14 +12,13 @@ export const FIND_ACTOR_BY_ID = gql`
   }
 `;
 export const FIND_ALL_ACTORS = gql`
-  query {
+  query Query {
     findAllActors {
       _id
-      birthDate
-      firstName
       imdbProfileLink
       lastName
       profilePicture
+      firstName
     }
   }
 `;
@@ -29,7 +27,6 @@ export const SEARCH_ACTOR_BY_FIRST_NAME = gql`
   query ($firstName: String!) {
     searchActorByFirstName(firstName: $firstName) {
       _id
-      birthDate
       firstName
       imdbProfileLink
       lastName
@@ -42,7 +39,6 @@ export const SEARCH_ACTOR_BY_LAST_NAME = gql`
   query ($lastName: String!) {
     searchActorByLastName(lastName: $lastName) {
       _id
-      birthDate
       firstName
       imdbProfileLink
       lastName
