@@ -7,6 +7,7 @@ function validate(comment) {
   const schema = Joi.object({
     comment: Joi.string().min(1).max(1024).required(),
     author: Joi.objectId().required(),
+    show: JOi.objectId().required(),
   });
   return schema.validate(comment);
 }
@@ -25,6 +26,11 @@ const commentSchema = new Schema(
       ref: "User",
       required: true,
     },
+    show: {
+        type: mongoose.Schema.Types.objectId,
+        ref: "TvShows",
+        required: true,
+    }
   },
   { timestamps: true }
 );
