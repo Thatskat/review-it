@@ -120,3 +120,55 @@ export const SEARCH_USERS = gql`
     }
   }
 `;
+
+export const GET_ALL_COMMENTS = gql`
+  query Query {
+    getAllComments {
+      _id
+      comment
+      createdAt
+      show
+      updatedAt
+      user
+    }
+  }
+`;
+
+export const GET_ALL_COMMENTS_BY_USER = gql`
+  query Query($userId: ID!) {
+    getAllCommentsByUser(userId: $userId) {
+      _id
+      comment
+      show
+      updatedAt
+      user
+      createdAt
+    }
+  }
+`;
+
+export const GET_ALL_COMMENTS_FOR_SHOW = gql`
+  query Query($showId: ID!) {
+    getAllCommentsForShow(showId: $showId) {
+      _id
+      comment
+      createdAt
+      show
+      updatedAt
+      user
+    }
+  }
+`;
+
+export const GET_COMMENT_BY_ID = gql`
+  query Query($commentId: ID!) {
+    getCommentById(commentId: $commentId) {
+      _id
+      comment
+      show
+      createdAt
+      updatedAt
+      user
+    }
+  }
+`;
