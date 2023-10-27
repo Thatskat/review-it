@@ -15,8 +15,6 @@ const ProfilePage = ({ user }) => {
     variables: {userId: id}
   })
 
-  console.log(commentData.data)
-
   return (
     <div className={styles.profile}>
       <Helmet>
