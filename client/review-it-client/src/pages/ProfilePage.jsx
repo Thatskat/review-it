@@ -3,13 +3,19 @@ import { useParams, Link } from "react-router-dom";
 import * as styles from "./PorfilePage.css";
 
 import { useQuery } from "@apollo/client";
-import { GET_USER } from "../graphql/queries";
+import { GET_USER, GET_ALL_COMMENTS_BY_USER } from "../graphql/queries";
 
 const ProfilePage = ({ user }) => {
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_USER, {
     variables: { getUserId: id },
   });
+
+  const commentData = useQuery(GET_ALL_COMMENTS_BY_USER, {
+    variables: {userId: id}
+  })
+
+  console.log(commentData.data)
 
   return (
     <div className={styles.profile}>
@@ -18,9 +24,9 @@ const ProfilePage = ({ user }) => {
       </Helmet>
       <div>
         {/* REVIEWS GO HERE */}
-        <Link to="/" className={styles.reviewCard}>
-          Reviews here
-        </Link>
+        <div>
+          {commentData.data && commentData.data.getAllCommentsByUser.map((m) => <p key={m._id}>{m.comment}</p>)}
+        </div>
       </div>
       <div className={styles.infoBox}>
         <h1>{data?.getUser.displayName}</h1>

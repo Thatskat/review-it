@@ -15,7 +15,7 @@ const commentResolver = {
     },
     getAllCommentsByUser: async (root, { userId }) => {
       try {
-        const comments = await Comment.find({ user: userId });
+        const comments = await Comment.find({ author: userId });
         if (!comments) {
           console.error("Error: This user has made no comments.");
         }
