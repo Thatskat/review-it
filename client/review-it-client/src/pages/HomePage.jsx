@@ -11,9 +11,9 @@ const HomePage = () => {
         <title>home | review it</title>
       </Helmet>
       <div className={styles.home}>
-        <div>
-          <img src={primaryBlob} />
-          <img src={secondaryBlob}/>
+        <div className={styles.reviewHighlight}>
+          <img src={primaryBlob} className={styles.blob}/>
+          <img src={secondaryBlob} className={styles.blob}/>
           <div>
             <p>review blah blah blah</p>
           </div>

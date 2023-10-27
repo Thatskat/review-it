@@ -6,27 +6,38 @@ export const home = style({
   color: variables.colors.secondary,
   display: "grid",
   gridTemplateColumns: "repeat(2, 2fr)",
-  padding: "2rem 4rem"
+  padding: "2rem 4rem",
 });
 
 globalStyle(`${home} img`, {
-  width: "30%"
-})
+  width: "30%",
+});
 
 globalStyle(`${home} h1`, {
   fontFamily: variables.fonts.brand,
   fontSize: "7.594rem",
-  textAlign: "end"
-})
+  textAlign: "end",
+});
 
 globalStyle(`${home} p`, {
   color: variables.colors.brand,
   textAlign: "end",
   textTransform: "lowercase",
   padding: `2rem 0rem`,
-  fontWeight: "bold"
-})
+  fontWeight: "bold",
+});
 
-export const swatch = style({
- 
+export const blob = style({
+  width: "25rem !important",
+  position: "absolute",
+  zIndex: "0",
+});
+
+export const reviewHighlight = style({});
+
+globalStyle(`${reviewHighlight} div`, {
+  background: variables.colors.primary,
+  border: `${variables.colors.secondary} 5px solid`,
+  position: "absolute",
+  zIndex: "1",
 })
