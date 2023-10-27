@@ -135,16 +135,16 @@ export const LOGIN_USER = gql`
 `;
 
 export const CREATE_COMMENT = gql`
-  mutation Mutation($input: CommentInput!) {
-    createComment(input: $input) {
-      _id
-      comment
-      show
-      createdAt
-      updatedAt
-      user
-    }
+mutation Mutation($input: CommentInput!) {
+  createComment(input: $input) {
+    _id
+    comment
+    createdAt
+    show
+    updatedAt
+    author
   }
+}
 `;
 
 export const DELETE_COMMENT = gql`
@@ -155,7 +155,7 @@ export const DELETE_COMMENT = gql`
       createdAt
       show
       updatedAt
-      user
+      author
     }
   }
 `;
@@ -167,7 +167,7 @@ export const EDIT_COMMENT = gql`
       comment
       createdAt
       show
-      user
+      author
       updatedAt
     }
   }

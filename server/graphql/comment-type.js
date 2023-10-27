@@ -6,14 +6,14 @@ const commentType = gql`
     comment: String!
     createdAt: String!
     updatedAt: String!
-    user: ID!
-    show: ID!
+    author: [ID]
+    show: [ID]
   }
 
   input CommentInput {
     comment: String!
-    user: ID!
-    show: ID!
+    author: [ID]
+    show: [ID]
   }
   type Query {
     getAllComments: [CommentType]

@@ -23,12 +23,12 @@ const commentSchema = new Schema(
     },
     author: {
       type: [mongoose.Schema.Types.ObjectId],
-      ref: "users",
+      ref: "User",
       required: true,
     },
     show: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "tvshows",
+        ref: "TvShow",
         required: true,
     }
   },

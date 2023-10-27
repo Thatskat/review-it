@@ -129,7 +129,7 @@ export const GET_ALL_COMMENTS = gql`
       createdAt
       show
       updatedAt
-      user
+      author
     }
   }
 `;
@@ -141,7 +141,7 @@ export const GET_ALL_COMMENTS_BY_USER = gql`
       comment
       show
       updatedAt
-      user
+      author
       createdAt
     }
   }
@@ -155,7 +155,7 @@ export const GET_ALL_COMMENTS_FOR_SHOW = gql`
       createdAt
       show
       updatedAt
-      user
+      author
     }
   }
 `;
@@ -168,7 +168,7 @@ export const GET_COMMENT_BY_ID = gql`
       show
       createdAt
       updatedAt
-      user
+      author
     }
   }
 `;
