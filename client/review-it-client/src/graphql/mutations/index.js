@@ -133,3 +133,42 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const CREATE_COMMENT = gql`
+  mutation Mutation($input: CommentInput!) {
+    createComment(input: $input) {
+      _id
+      comment
+      show
+      createdAt
+      updatedAt
+      user
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation Mutation($commentId: ID!) {
+    deleteComment(commentId: $commentId) {
+      _id
+      comment
+      createdAt
+      show
+      updatedAt
+      user
+    }
+  }
+`;
+
+export const EDIT_COMMENT = gql`
+  mutation Mutation($editCommentId: ID!, $userId: ID!, $input: CommentInput!) {
+    editComment(id: $editCommentId, userId: $userId, input: $input) {
+      _id
+      comment
+      createdAt
+      show
+      user
+      updatedAt
+    }
+  }
+`;
