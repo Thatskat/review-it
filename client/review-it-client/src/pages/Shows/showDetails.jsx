@@ -13,12 +13,20 @@ import * as styles from "./ShowDetails.css";
 const ShowDetails = ({ user }) => {
   const schema = Joi.object({
     comment: Joi.string().min(1).max(1024).required(),
+    author: Joi.string(),
+    show: Joi.string(),
   });
 
   const { showId } = useParams();
 
-  const { loading, error, data } = useQuery(GET_TV_SHOW, {
+  const userId = JSON.parse(sessionStorage.getItem("user"));
+
+  const showData = useQuery(GET_TV_SHOW, {
     variables: { getTvShowId: showId },
+  });
+
+  const { data, refetch } = useQuery(GET_ALL_COMMENTS_FOR_SHOW, {
+    variables: { showId: showId },
   });
 
   const {
@@ -29,18 +37,18 @@ const ShowDetails = ({ user }) => {
     resolver: joiResolver(schema),
     defaultValues: {
       comment: "",
-      author: user?._id,
+      author: userId._id,
       show: showId,
     },
   });
 
-  const [CreateComment] = useMutation(CREATE_COMMENT);
+  const [createComment] = useMutation(CREATE_COMMENT);
 
   const onSubmit = async (commentData, e) => {
     e.preventDefault();
     const { comment, author, show } = commentData;
     try {
-      const res = await CreateComment({
+      const res = await createComment({
         variables: {
           input: {
             comment,
@@ -49,7 +57,7 @@ const ShowDetails = ({ user }) => {
           },
         },
       });
-      console.log(res);
+      refetch();
     } catch (err) {
       console.error(err);
     }
@@ -58,36 +66,39 @@ const ShowDetails = ({ user }) => {
   return (
     <div className={styles.details}>
       <Helmet>
-        <title>{`${data?.getTvShow.title} | review it`}</title>
+        <title>{`${showData.data?.getTvShow.title} | review it`}</title>
       </Helmet>
       <div>
         <Link to="/shows">Back to tv shows</Link>
-        <h1>{data?.getTvShow.title}</h1>
+        <h1>{showData.data?.getTvShow.title}</h1>
         <p className="overview">
           <a
-            href={data?.getTvShow.imdbLink}
+            href={showData.data?.getTvShow.imdbLink}
             target="_blank"
             rel="noreferrer"
-            title={`${data?.getTvShow.title}'s iMDB page`}
+            title={`${showData.data?.getTvShow.title}'s iMDB page`}
           >
             imdb
           </a>{" "}
-          | <b>{data?.getTvShow.episodeNo}</b> episode
-          {data?.getTvShow.episodeNo > 1 ? "s" : ""}
+          | <b>{showData.data?.getTvShow.episodeNo}</b> episode
+          {showData.data?.getTvShow.episodeNo > 1 ? "s" : ""}
         </p>
-        <p>{data?.getTvShow.description}</p>
-        <img src={data?.getTvShow.showPoster} />
+        <p>{showData.data?.getTvShow.description}</p>
+        <img src={showData.data?.getTvShow.showPoster} />
       </div>
       <div>
         <p>reviews go here</p>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate="noValidate">
+        {data &&
+          data.getAllCommentsForShow.map((comment) => (
+            <p key={comment._id}>{comment.comment}</p>
+          ))}
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label>Comment</label>
           <input
             {...register("comment")}
             placeholder="Enter Comment"
             type="text"
             name="comment"
-            onChange={(e) => console.log(e.target.value)}
           />
           {errors.comment && <span>Email is required to login</span>}
           <button type="submit">Login</button>

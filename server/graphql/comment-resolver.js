@@ -59,7 +59,6 @@ const commentResolver = {
         let comment = new Comment(args.input);
         await comment.save();
         return comment;
-        return;
       } catch (err) {
         console.error("Error has occurred adding comment", err);
       }
@@ -70,7 +69,7 @@ const commentResolver = {
         if (!comment) {
           console.error("Error: Comment not found");
         }
-        if (comment.user !== userId) {
+        if (comment.author !== userId) {
           console.error("Error: This user cannot edit this comment");
         }
         const { error } = validate(input);
