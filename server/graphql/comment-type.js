@@ -23,7 +23,7 @@ const commentType = gql`
   }
   type Mutation {
     createComment(input: CommentInput!): CommentType!
-    editComment(userId: ID!, input: CommentInput!): CommentType!
+    editComment(id: ID!, userId: ID!, input: CommentInput!): CommentType!
     deleteComment(commentId: ID!): CommentType!
   }
 `;
