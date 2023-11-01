@@ -1,9 +1,15 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
-const CommentCard = () => {
+import * as styles from "./CommentCard.css";
+
+const CommentCard = ({ comment }) => {
   return (
-    <div>index</div>
-  )
-}
+    <div className={styles.commentCard}>
+      <p>{comment.comment}</p>
+      <Link to={`/profile/${comment.author[0]}`}>{comment.author[0]}</Link>
+      <p>{comment.createdAt}</p>
+    </div>
+  );
+};
 
-export default CommentCard
+export default CommentCard;

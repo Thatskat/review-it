@@ -7,7 +7,7 @@ export const details = style({
   padding: "2rem 4rem",
   display: "grid",
   gridTemplateColumns: "repeat(2, 2fr)",
-  gap: "1rem"
+  gap: "1rem",
 });
 
 globalStyle(`${details} h1`, {
@@ -21,9 +21,14 @@ globalStyle(`${details} a`, {
 });
 
 globalStyle(`${details} .overview`, {
-    margin: "1rem 0"
-  });
+  margin: "1rem 0",
+});
 
-  globalStyle(`${details} img`, {
-    maxWidth: "10rem"
-  });
+globalStyle(`${details} img`, {
+  maxWidth: "10rem",
+});
+
+export const commentFieldSection = style({
+  height: "60vh",
+  overflowY: "scroll"
+});

@@ -5,10 +5,15 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
 
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_TV_SHOW, GET_ALL_COMMENTS_FOR_SHOW, GET_USER } from "../../graphql/queries";
+import {
+  GET_TV_SHOW,
+  GET_ALL_COMMENTS_FOR_SHOW,
+  GET_USER,
+} from "../../graphql/queries";
 import { CREATE_COMMENT } from "../../graphql/mutations";
 
 import * as styles from "./ShowDetails.css";
+import CommentCard from "../../components/feature/CommentCard";
 
 const ShowDetails = ({ user }) => {
   const schema = Joi.object({
@@ -58,6 +63,7 @@ const ShowDetails = ({ user }) => {
         },
       });
       refetch();
+      e.target.reset()
     } catch (err) {
       console.error(err);
     }
@@ -87,25 +93,28 @@ const ShowDetails = ({ user }) => {
         <img src={showData.data?.getTvShow.showPoster} />
       </div>
       <div>
-        {data &&
-          data.getAllCommentsForShow.map((comment) => (
-            <div key={comment._id}>
-              <p>{comment.comment}</p>
-              <Link to={`/profile/${comment.author[0]}`}>{comment.author[0]}</Link>
-            </div>
-          ))}
-          {user ? <form onSubmit={handleSubmit(onSubmit)}>
-          <label>Comment</label>
-          <input
-            {...register("comment")}
-            placeholder="Enter Comment"
-            type="text"
-            name="comment"
-          />
-          {errors.comment && <span>comment is required</span>}
-          <button type="submit">Comment</button>
-        </form> : ""}
-     
+        <div className={styles.commentFieldSection}>
+          {data &&
+            data.getAllCommentsForShow.map((comment) => (
+              <CommentCard key={comment._id} comment={comment} />
+            ))}
+        </div>
+
+        {user ? (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <label>Comment</label>
+            <input
+              {...register("comment")}
+              placeholder="Enter Comment"
+              type="text"
+              name="comment"
+            />
+            {errors.comment && <span>comment is required</span>}
+            <button type="submit">Comment</button>
+          </form>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

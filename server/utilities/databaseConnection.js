@@ -1,5 +1,9 @@
+// databaseConnection.js establishes the connection between the database and the server.
+
+// Import mongoose
 const mongoose = require("mongoose");
 
+// DbConnect is an Async Function that 
 const dbConnect = async (connectionString) => {
   try {
     const connectResult = await mongoose.connect(connectionString, {
