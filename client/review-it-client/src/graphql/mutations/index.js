@@ -104,19 +104,18 @@ export const EDIT_USER = gql`
 `;
 
 export const DELETE_USER = gql`
-  mutation DeleteUser($deleteUserId: ID!) {
-    deleteUser(id: $deleteUserId) {
-      displayName
-      firstName
-      email
-      id
-      lastName
-      isAdmin
-      password
-      username
-      token
-    }
+mutation Mutation($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId) {
+    _id
+    displayName
+    email
+    isAdmin
+    token
+    lastName
+    firstName
+    username
   }
+}
 `;
 
 export const LOGIN_USER = gql`

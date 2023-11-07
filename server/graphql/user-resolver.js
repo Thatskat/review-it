@@ -142,7 +142,6 @@ const userResolver = {
         if (!user) {
           console.error("Error: No user found.");
         }
-        isAuthorized(user, context);
         return await User.findByIdAndRemove(arguments.id);
       } catch (err) {
         console.error("Error has occurred when deleting user", err);
