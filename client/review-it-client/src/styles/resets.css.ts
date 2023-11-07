@@ -45,3 +45,4 @@ globalStyle("span", {
 globalStyle("input:focus", {
   outline: "none",
 });
+

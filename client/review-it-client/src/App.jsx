@@ -25,6 +25,7 @@ import AddActor from "./pages/AddActor";
 import EditActor from "./pages/EditActor";
 import EditActorDetails from "./pages/EditActorDetails";
 import DeleteActor from "./pages/DeleteActor";
+import DeleteReview from "./pages/deleteReview";
 import PageNotFound from "./pages/PageNotFound";
 
 const client = new ApolloClient({
@@ -126,6 +127,10 @@ function App() {
           <Route
             path="/admin-dashboard/edit/actor"
             element={<ProtectedRoutes component={EditActor} user={user} />}
+          />
+          <Route
+            path="/admin-dashboard/delete/review"
+            element={<ProtectedRoutes component={DeleteReview} user={user} />}
           />
           <Route
             path="/admin-dashboard/edit/actor/:id"

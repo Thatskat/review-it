@@ -10,8 +10,6 @@ const AboutUsPage = () => {
       </Helmet>
 
       <div>
-        <img src={testBlob} alt="brand blob"/>
-        <img src={secondaryBlob} alt="secondary blob" className={styles.blob}/>
         <h2>Let&apos;s take a closer look</h2>
         <div>
           <div>1</div>

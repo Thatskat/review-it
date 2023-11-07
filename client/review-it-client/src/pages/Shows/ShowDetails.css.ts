@@ -32,3 +32,7 @@ export const commentFieldSection = style({
   height: "60vh",
   overflowY: "scroll"
 });
+
+globalStyle(`${commentFieldSection} form`, {
+  background: variables.colors.primary
+})
