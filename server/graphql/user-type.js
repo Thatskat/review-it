@@ -38,6 +38,7 @@ const userType = gql`
   type Query {
     getUser(id: ID): UserType
     searchUsers(search: String): [UserType]
+    getAllUsers(): [UserType]
   }
   type Mutation {
     addUser(input: UserInput): UserReturnType

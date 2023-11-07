@@ -1,9 +1,19 @@
-import React from 'react'
+import { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { useNavigate, Link } from "react-router-dom";
 
-const EditUser = () => {
-  return (
-    <div>EditUser</div>
-  )
-}
+import { useQuery } from "@apollo/client";
+import { GET_ALL } from "../graphql/queries";
 
-export default EditUser
+const EditUser = ({ user }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user?.isAdmin !== true) {
+      navigate(`/profile/${user?._id}`);
+    }
+  }, []);
+  return <div>EditUser</div>;
+};
+
+export default EditUser;

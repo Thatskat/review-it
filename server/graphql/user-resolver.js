@@ -32,6 +32,18 @@ const userResolver = {
         console.error(err);
       }
     },
+    getAllUsers: async (root, arguments, context) => {
+      try {
+        isAuthenticatedUser(context);
+        const user = await User.find({});
+        if (!user) {
+          console.log("Error: User could not be found");
+        }
+        return user;
+      } catch (err) {
+        console.error(err);
+      }
+    },
   },
   Mutation: {
     addUser: async (root, arguments) => {
