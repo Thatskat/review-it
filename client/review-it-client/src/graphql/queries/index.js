@@ -121,6 +121,21 @@ export const SEARCH_USERS = gql`
   }
 `;
 
+export const GET_ALL_USERS = gql`
+  query GetAllUsers {
+    getAllUsers {
+      _id
+      displayName
+      email
+      firstName
+      isAdmin
+      lastName
+      password
+      username
+    }
+  }
+`;
+
 export const GET_ALL_COMMENTS = gql`
   query Query {
     getAllComments {
