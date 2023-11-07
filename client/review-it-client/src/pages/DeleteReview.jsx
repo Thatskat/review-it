@@ -5,6 +5,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_ALL_COMMENTS, GET_USER } from "../graphql/queries";
 import { DELETE_COMMENT } from "../graphql/mutations";
 
+import * as styles from "./DeleteReview.css"
+
 const DeleteReview = ({ user }) => {
   const navigate = useNavigate();
 
@@ -51,13 +53,13 @@ const DeleteReview = ({ user }) => {
     }
   }, []);
   return (
-    <div>
+    <div className={styles.deleteReview}>
       <Helmet>
         <title>delete a comment | review it</title>
       </Helmet>
       <Link to="/admin-dashboard">Back to admin dashboard</Link>
       <h1>Delete a comment</h1>
-      <div>
+      <div className={styles.reviewGrid}>
         {data
           ? data.getAllComments.map((comment) => (
               <div key={comment._id}>
