@@ -28,7 +28,7 @@ const ProfilePage = ({ user }) => {
         <title>{`${data?.getUser.displayName}'s profile | review it`}</title>
       </Helmet>
       <div>
-        <div>
+        <div className={styles.reviewOverview}>
           <h2>Reviews</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
@@ -39,7 +39,7 @@ const ProfilePage = ({ user }) => {
             {" "}
             {commentData.data &&
               commentData.data.getAllCommentsByUser.map((m) => (
-                <CommentCard key={m._id} comment={m}/>
+                <CommentCard key={m._id} comment={m} user={user}/>
               ))}
           </div>
         </div>

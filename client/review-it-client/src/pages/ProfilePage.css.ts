@@ -6,15 +6,16 @@ export const profile = style({
   color: variables.colors.secondary,
   padding: "2rem 4rem",
   display: "grid",
-  gridTemplateColumns: "repeat(2, 2fr)",
+  gridTemplateColumns: "repeat(2, 1fr)",
 });
 
 export const infoBox = style({
   border: `${variables.colors.secondary} 2px solid`,
   borderRadius: 20,
   padding: "1.5rem",
-  width: "60%",
+  width: "20rem",
   marginLeft: "auto",
+  height: "40vh"
 });
 globalStyle(`${profile} h1`, {
   fontFamily: variables.fonts.brand,
@@ -25,10 +26,19 @@ globalStyle(`${profile} h1`, {
 
 globalStyle(`${profile}  button`, {
   display: "block",
-  margin: "1rem auto"
+  margin: "1rem auto",
 });
 
 export const reviewBox = style({
-  maxHeight: "100vh",
-  overflowY: "scroll"
+  maxHeight: "60vh",
+  minHeight: "60vh",
+  overflowY: "scroll",
+});
+
+export const reviewOverview = style({
+width: "60rem"
+});
+
+globalStyle(`${reviewOverview} h2`, {
+  fontFamily: variables.fonts.brand,
 })

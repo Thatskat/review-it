@@ -28,6 +28,7 @@ import DeleteActor from "./pages/DeleteActor";
 import DeleteReview from "./pages/deleteReview";
 import EditUser from "./pages/EditUser";
 import AdminUserEdit from "./pages/AdminUserEdit";
+import EditComment from "./pages/EditComment";
 
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
@@ -149,6 +150,7 @@ function App() {
           />
           <Route path="/admin-dashboard/edit/user" element={<ProtectedRoutes component={EditUser} user={user}/>}/>
           <Route path="/admin-dashboard/edit/user/:id" element={<ProtectedRoutes component={AdminUserEdit} user={user}/>}/>
+          <Route path="/profile/edit/review/:id" element={<ProtectedRoutes component={EditComment} user={user}/>}/>
           <Route path="/privacy-policy" element={<PrivacyPolicy />}/>
           <Route path="*" component={<PageNotFound />} />
         </Route>

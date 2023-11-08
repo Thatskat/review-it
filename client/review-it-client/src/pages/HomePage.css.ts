@@ -35,9 +35,13 @@ export const blob = style({
 
 export const reviewHighlight = style({});
 
-globalStyle(`${reviewHighlight} div`, {
+globalStyle(`${reviewHighlight} .reviewCard`, {
   background: variables.colors.primary,
   border: `${variables.colors.secondary} 5px solid`,
   position: "absolute",
   zIndex: "1",
+  borderRadius: 20,
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 2fr)",
+  width: "40%"
 })
