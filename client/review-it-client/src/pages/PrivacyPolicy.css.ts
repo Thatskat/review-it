@@ -38,3 +38,8 @@ globalStyle(`${privacyPolicy} ul li:firstChild`, {
 globalStyle(`${privacyPolicy} ul li svg`, {
   color: variables.colors.highlight,
 });
+
+globalStyle(`${privacyPolicy} .bold`, {
+  fontWeight: "bold",
+  color: variables.colors.highlight
+})
