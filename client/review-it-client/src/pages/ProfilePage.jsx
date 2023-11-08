@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import { useParams, Link } from "react-router-dom";
-import * as styles from "./PorfilePage.css";
+import * as styles from "./ProfilePage.css";
 
 import { useQuery } from "@apollo/client";
 import { GET_USER, GET_ALL_COMMENTS_BY_USER } from "../graphql/queries";
