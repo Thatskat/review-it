@@ -28,7 +28,7 @@ globalStyle(`${profile}  button`, {
   margin: "1rem auto"
 });
 
-export const reviewCard = style({
-  background: variables.colors.secondary,
-  width: "100%",
-});
+export const reviewBox = style({
+  maxHeight: "100vh",
+  overflowY: "scroll"
+})
