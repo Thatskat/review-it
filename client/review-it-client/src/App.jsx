@@ -150,13 +150,22 @@ function App() {
             path="/admin-dashboard/delete/actor"
             element={<ProtectedRoutes component={DeleteActor} user={user} />}
           />
-          <Route path="/admin-dashboard/edit/user" element={<ProtectedRoutes component={EditUser} user={user}/>}/>
-          <Route path="/admin-dashboard/edit/user/:id" element={<ProtectedRoutes component={AdminUserEdit} user={user}/>}/>
-          <Route path="/profile/edit/review/:id" element={<ProtectedRoutes component={EditComment} user={user}/>}/>
-          <Route path="/privacy-policy" element={<PrivacyPolicy />}/>
-          <Route path="/contact" element={<Contact />}/>
-          <Route path="/terms-conditions" element={<TermsConditions />}/>
-          <Route path="*" component={<PageNotFound />} />
+          <Route
+            path="/admin-dashboard/edit/user"
+            element={<ProtectedRoutes component={EditUser} user={user} />}
+          />
+          <Route
+            path="/admin-dashboard/edit/user/:id"
+            element={<ProtectedRoutes component={AdminUserEdit} user={user} />}
+          />
+          <Route
+            path="/profile/edit/review/:id"
+            element={<ProtectedRoutes component={EditComment} user={user} />}
+          />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </ApolloProvider>
