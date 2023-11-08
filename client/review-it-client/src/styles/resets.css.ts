@@ -46,3 +46,16 @@ globalStyle("input:focus", {
   outline: "none",
 });
 
+globalStyle("::-webkit-scrollbar-track", {
+  background: variables.colors.primary,
+});
+
+globalStyle("::-webkit-scrollbar", {
+  width: 10,
+  margin: "1rem"
+});
+
+globalStyle("::-webkit-scrollbar-thumb", {
+  background: variables.colors.secondary,
+  borderRadius: 20
+})

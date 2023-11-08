@@ -57,7 +57,7 @@ const CommentCard = ({ comment, user }) => {
         <button onClick={() => handleDelete(comment?._id)}>Delete</button>
       ) : null}
       {comment?.author[0] === user?._id ? (
-        <Link to={`/profile/edit/review/${comment?._id}`}>Edit</Link>
+        <Link to={`/profile/edit/review/${comment?._id}`}><button>Edit</button></Link>
       ) : null}
       </div>
       

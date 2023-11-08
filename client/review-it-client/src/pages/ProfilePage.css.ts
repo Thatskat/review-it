@@ -36,7 +36,7 @@ export const reviewBox = style({
 });
 
 export const reviewOverview = style({
-width: "60rem"
+
 });
 
 globalStyle(`${reviewOverview} h2`, {
