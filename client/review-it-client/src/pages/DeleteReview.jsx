@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ALL_COMMENTS, GET_USER } from "../graphql/queries";
+import { GET_ALL_COMMENTS, GET_USER} from "../graphql/queries";
 import { DELETE_COMMENT } from "../graphql/mutations";
 
-import * as styles from "./DeleteReview.css"
+import DeleteReviewCard from "../components/common/DeleteReviewCard";
+
+import * as styles from "./DeleteReview.css";
 
 const DeleteReview = ({ user }) => {
   const navigate = useNavigate();
@@ -46,7 +48,6 @@ const DeleteReview = ({ user }) => {
 
   const { data, refetch } = useQuery(GET_ALL_COMMENTS);
 
-
   useEffect(() => {
     if (user?.isAdmin !== true) {
       navigate(`/profile/${user?._id}`);
@@ -62,13 +63,7 @@ const DeleteReview = ({ user }) => {
       <div className={styles.reviewGrid}>
         {data
           ? data.getAllComments.map((comment) => (
-              <div key={comment._id}>
-                <p>{comment.comment}</p>
-               <p></p>
-                <button onClick={() => handleDelete(comment._id)}>
-                  Delete
-                </button>
-              </div>
+              <DeleteReviewCard key={comment._id} comment={comment} deleteComment={handleDelete}/>
             ))
           : null}
       </div>
