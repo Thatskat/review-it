@@ -25,12 +25,14 @@ const HomePage = () => {
       </Helmet>
       <div className={styles.home}>
         <div className={styles.reviewHighlight}>
-          <img src={primaryBlob} className={styles.blob} />
-          <img src={secondaryBlob} className={styles.blob} />
+          <img src={primaryBlob} className={styles.blob} id="primaryBlob"/>
+          <img src={secondaryBlob} className={styles.blob} id="secondaryBlob"/>
+          <img src={primaryBlob} className={styles.blob} id="thirdBlob"/>
+          <img src={secondaryBlob} className={styles.blob} id="forthBlob"/>
           <div className="reviewCard">
             <img src={showData.data?.getTvShow?.showPoster} />
-            <div>
-              <p>{comment.data?.getCommentById?.comment}</p>
+            <div className="reviewText">
+              <h2>&quot;{comment.data?.getCommentById?.comment}&quot;</h2>
               <Link
                 to={`/show/${comment.data?.getCommentById?.show[0]}`}
                 title={showData.data?.getTvShow?.title}
