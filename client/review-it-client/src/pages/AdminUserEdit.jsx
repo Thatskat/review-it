@@ -8,6 +8,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER } from "../graphql/queries";
 import { EDIT_USER } from "../graphql/mutations";
 
+import * as styles from "./AddShowPage.css";
+
 const AdminUserEdit = ({ user }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -103,71 +105,81 @@ const AdminUserEdit = ({ user }) => {
     },
   });
   return (
-    <div>
+    <div className={styles.addShowPage}>
       <Helmet>
         <title>{`edit user "${data?.getUser.username}" | review it`}</title>
       </Helmet>
-      <Link to="/admin-dashboard/edit/user">Back to edit user overview</Link>
-      <h1>Edit {data?.getUser.username}</h1>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate="novalidate">
-        <label>First Name</label>
-        <input
-          {...register("firstName")}
-          placeholder="Enter user's first name"
-          type="text"
-          name="firstName"
-          defaultValue={data?.getUser.firstName}
-        />
-        <label>Last Name</label>
-        <input
-          {...register("lastName")}
-          placeholder="Enter user's last name"
-          type="text"
-          name="lastName"
-          defaultValue={data?.getUser.lastName}
-        />
-        <label>Username</label>
-        <input
-          {...register("username")}
-          placeholder="Enter username"
-          type="text"
-          name="username"
-          defaultValue={data?.getUser.username}
-        />
-        <label>Display name</label>
-        <input
-          {...register("displayName")}
-          placeholder="Enter Display Name"
-          type="text"
-          name="displayName"
-          defaultValue={data?.getUser.displayName}
-        />
-        <label>Email</label>
-        <input
-          {...register("email")}
-          placeholder="Enter Email"
-          type="email"
-          name="email"
-          defaultValue={data?.getUser.email}
-        />
-        <label htmlFor="isAdmin">Is Admin?</label>
-        <select name="isAdmin" id="isAdmin" {...register("isAdmin")}>
-          <option value={true}>True</option>
-          <option value={false}>False</option>
-        </select>
-        <label>Password</label>
-        <input
-          {...register("password")}
-          placeholder="password"
-          type="password"
-          name="password"
-          defaultValue={data?.getUser.password}
-        />
-        <button type="submit">Edit User</button>
-      </form>
+      <div>
+        <Link to="/admin-dashboard/edit/user">Back to edit user overview</Link>
+        <h1>Edit {data?.getUser.username}</h1>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate="novalidate">
+          <label>First Name</label>
+          <input
+            {...register("firstName")}
+            placeholder="Enter user's first name"
+            type="text"
+            name="firstName"
+            defaultValue={data?.getUser.firstName}
+          />
+          <label>Last Name</label>
+          <input
+            {...register("lastName")}
+            placeholder="Enter user's last name"
+            type="text"
+            name="lastName"
+            defaultValue={data?.getUser.lastName}
+          />
+          <label>Username</label>
+          <input
+            {...register("username")}
+            placeholder="Enter username"
+            type="text"
+            name="username"
+            defaultValue={data?.getUser.username}
+          />
+          <label>Display name</label>
+          <input
+            {...register("displayName")}
+            placeholder="Enter Display Name"
+            type="text"
+            name="displayName"
+            defaultValue={data?.getUser.displayName}
+          />
+          <label>Email</label>
+          <input
+            {...register("email")}
+            placeholder="Enter Email"
+            type="email"
+            name="email"
+            defaultValue={data?.getUser.email}
+          />
+          <label htmlFor="isAdmin">Is Admin?</label>
+          <select name="isAdmin" id="isAdmin" {...register("isAdmin")}>
+            <option value={true}>True</option>
+            <option value={false}>False</option>
+          </select>
+          <label>Password</label>
+          <input
+            {...register("password")}
+            placeholder="password"
+            type="password"
+            name="password"
+            defaultValue={data?.getUser.password}
+          />
+          <button type="submit">Edit User</button>
+        </form>
+      </div>
+
       <div className="errorsGrid">
-        {errors.firstName && <span>Error: The user&apos;s first name is required</span>}
-        {errors.firstName && <span>Error: The user&apos;s first name is required</span>}
+        {errors.firstName && (
+          <span>Error: The user&apos;s first name is required</span>
+        )}
+        {errors.lastName && (
+          <span>Error: The user&apos;s last name is required</span>
+        )}
+        {errors.username && (
+          <span>Error: The user&apos;s username is required</span>
+        )}
       </div>
     </div>
   );
