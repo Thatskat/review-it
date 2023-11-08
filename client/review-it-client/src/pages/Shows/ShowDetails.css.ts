@@ -30,9 +30,23 @@ globalStyle(`${details} img`, {
 
 export const commentFieldSection = style({
   height: "60vh",
-  overflowY: "scroll"
+  overflowY: "scroll",
 });
 
-globalStyle(`${commentFieldSection} form`, {
-  background: variables.colors.primary
-})
+export const commentForm = style({
+  border: `${variables.colors.brand} 5px solid`,
+  borderRadius: 20,
+  padding: "0.5rem",
+  marginTop: "0.5rem",
+});
+
+globalStyle(`${commentForm} label`, {
+  display: "none",
+});
+globalStyle(`${commentForm} input`, {
+  width: "30rem",
+  borderRadius: 20,
+  padding: "0.5rem",
+  margin: `0 0.5rem`,
+  border: `${variables.colors.secondary} 5px solid`,
+});

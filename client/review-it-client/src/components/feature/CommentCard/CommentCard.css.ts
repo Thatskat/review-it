@@ -6,6 +6,7 @@ export const commentCard = style({
   border: `${variables.colors.brandDark} 1px solid`,
   borderRadius: 20,
   padding: "0.5rem",
+  margin: "0.5rem 0"
 });
 
 globalStyle(`${commentCard} p`, {

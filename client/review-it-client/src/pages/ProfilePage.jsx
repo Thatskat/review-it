@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { GET_USER, GET_ALL_COMMENTS_BY_USER } from "../graphql/queries";
 
 import CommentCard from "../components/common/CommentCard";
+import { useEffect } from "react";
 
 const ProfilePage = ({ user }) => {
   const { id } = useParams();
@@ -16,6 +17,10 @@ const ProfilePage = ({ user }) => {
   const commentData = useQuery(GET_ALL_COMMENTS_BY_USER, {
     variables: { userId: id },
   });
+
+  useEffect(()=> {
+   commentData.refetch();
+  }, [])
 
   return (
     <div className={styles.profile}>

@@ -8,10 +8,11 @@ const CommentCard = ({ comment }) => {
   const userData = useQuery(GET_USER, {
     variables: {getUserId: comment?.author[0]}
   })
+
   return (
     <div className={styles.commentCard}>
       <p>{comment.comment}</p>
-      <Link to={`/profile/${comment?.author[0]}`}>{userData.data?.getUser?.username}</Link>
+      <Link to={`/profile/${comment?.author[0]}`} title={`${userData.data?.getUser?.username}'s Profile`}>by {userData.data?.getUser?.username}</Link>
       <p>{comment.createdAt}</p>
     </div>
   );

@@ -101,7 +101,7 @@ const ShowDetails = ({ user }) => {
         </div>
 
         {user ? (
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.commentForm}>
             <label>Comment</label>
             <input
               {...register("comment")}
