@@ -21,4 +21,5 @@ globalStyle(`${deleteReview} h1`, {
 export const reviewGrid = style({
   display: "grid",
   gridTemplateColumns: "repeat(7, 2fr)",
+  gap: "1rem"
 });

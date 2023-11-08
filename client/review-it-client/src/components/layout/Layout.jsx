@@ -6,7 +6,7 @@ const Layout = ({ user, logout }) => {
     <div>
       <Header user={user} logout={logout} />
       <div>
-        <Outlet />
+        <Outlet  style={{minHeight: "100vh"}}/>
       </div>
       <Footer />
     </div>

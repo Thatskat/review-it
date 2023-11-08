@@ -6,6 +6,8 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_ALL_USERS } from "../graphql/queries";
 import { DELETE_USER } from "../graphql/mutations";
 
+import * as styles from "./DeleteShow.css"
+
 const EditUser = ({ user }) => {
   const navigate = useNavigate();
 
@@ -53,17 +55,18 @@ const EditUser = ({ user }) => {
 
   const { loading, error, data, refetch } = useQuery(GET_ALL_USERS);
   return (
-    <div>
+    <div className={styles.deletePage}>
       <Helmet>
         <title>edit users | review it</title>
       </Helmet>
       <Link to="/admin-dashboard">Back to admin dashboard</Link>
       <h1>Edit Users</h1>
-      <div>
+      <div className={styles.showGrid}>
         {data &&
           data.getAllUsers.map((user) => (
-            <div key={user._id}>
+            <div key={user._id} className={styles.adminCard}>
               <p>{user.username}</p>
+              <Link to={`/profile/${user._id}`}>View Profile</Link>
               <Link to={`${user._id}`}>Edit</Link>
               <button onClick={() => handleDelete(user._id)}>Delete</button>
             </div>

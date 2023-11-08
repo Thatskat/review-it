@@ -7,3 +7,8 @@ export const commentCard = style({
     margin: "0.5rem 0",
     borderRadius: 20
 })
+
+export const userLinks = style({
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 2fr)"
+})

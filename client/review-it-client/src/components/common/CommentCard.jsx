@@ -52,12 +52,15 @@ const CommentCard = ({ comment, user }) => {
         {showData.data?.getTvShow?.title}
       </Link>
       <p>Created at: {comment?.createdAt}</p>
+      <div className={styles.userLinks}>
       {comment?.author[0] === user?._id ? (
         <button onClick={() => handleDelete(comment?._id)}>Delete</button>
       ) : null}
       {comment?.author[0] === user?._id ? (
         <Link to={`/profile/edit/review/${comment?._id}`}>Edit</Link>
       ) : null}
+      </div>
+      
     </div>
   );
 };

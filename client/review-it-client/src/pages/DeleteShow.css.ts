@@ -21,4 +21,16 @@ globalStyle(`${deletePage} a`, {
   export const showGrid = style({
     display: "grid",
     gridTemplateColumns: "repeat(7, 2fr)",
+    gap: "1rem"
+  })
+
+  export const adminCard = style({
+    border: `${variables.colors.brand} 2px solid`,
+    borderRadius: 20,
+    padding: "1rem",
+    textAlign: "center"
+  })
+
+  globalStyle(`${adminCard} a`, {
+    display: "block"
   })
