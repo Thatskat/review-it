@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_COMMENT_BY_ID } from "../graphql/queries";
+import { GET_COMMENT_BY_ID, GET_TV_SHOW } from "../graphql/queries";
 import { EDIT_COMMENT } from "../graphql/mutations";
 
 import * as styles from "./AddShowPage.css";
@@ -22,6 +22,10 @@ const EditComment = ({ user }) => {
 
   const { data } = useQuery(GET_COMMENT_BY_ID, {
     variables: { commentId: id },
+  });
+
+  const getTvShow = useQuery(GET_TV_SHOW, {
+    variables: { getTvShowId: data?.getCommentById.show[0] },
   });
 
   const [editComment] = useMutation(EDIT_COMMENT);
@@ -50,6 +54,8 @@ const EditComment = ({ user }) => {
 
   const commentSchema = Joi.object({
     comment: Joi.string().min(1).max(1024).required(),
+    show: Joi.string(),
+    author: Joi.string(),
   });
   const {
     handleSubmit,
@@ -70,16 +76,23 @@ const EditComment = ({ user }) => {
       </Helmet>
       <div>
         <h1>Edit comment</h1>
+        <p>This comment appears for the show <Link to={`/show/${data?.getCommentById.show[0]}`}>{getTvShow.data?.getTvShow?.title}</Link></p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>Comment</label>
           <input
             {...register("comment")}
-            placeholder="Enter TV Show Title"
+            placeholder="Edit your comment"
             type="text"
             name="comment"
             defaultValue={data?.getCommentById.comment}
           />
+          <button type="submit">edit</button>
         </form>
+      </div>
+      <div className="errorsGrid">
+        {errors.comment && <span>Error: The comment is required!</span>}
+        {errors.author && <span>Error: Author is required</span>}
+        {errors.show && <span>Error: Show is required</span>}
       </div>
     </div>
   );

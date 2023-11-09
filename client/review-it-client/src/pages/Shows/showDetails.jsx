@@ -1,15 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useForm } from "react-hook-form";
 
 import { useQuery, useMutation } from "@apollo/client";
-import {
-  GET_TV_SHOW,
-  GET_ALL_COMMENTS_FOR_SHOW,
-  GET_USER,
-} from "../../graphql/queries";
+import { GET_TV_SHOW, GET_ALL_COMMENTS_FOR_SHOW } from "../../graphql/queries";
 import { CREATE_COMMENT } from "../../graphql/mutations";
 
 import * as styles from "./ShowDetails.css";
@@ -33,6 +30,9 @@ const ShowDetails = ({ user }) => {
   const { data, refetch } = useQuery(GET_ALL_COMMENTS_FOR_SHOW, {
     variables: { showId: showId },
   });
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const {
     register,
@@ -63,7 +63,7 @@ const ShowDetails = ({ user }) => {
         },
       });
       refetch();
-      e.target.reset()
+      e.target.reset();
     } catch (err) {
       console.error(err);
     }
@@ -96,12 +96,15 @@ const ShowDetails = ({ user }) => {
         <div className={styles.commentFieldSection}>
           {data &&
             data.getAllCommentsForShow.map((comment) => (
-              <CommentCard key={comment._id} comment={comment} />
+              <CommentCard key={comment._id} comment={comment} user={user} />
             ))}
         </div>
 
         {user ? (
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.commentForm}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.commentForm}
+          >
             <label>Comment</label>
             <input
               {...register("comment")}
