@@ -41,7 +41,7 @@ const AdminUserEdit = ({ user }) => {
     try {
       const res = await editUser({
         variables: {
-          editUser: id,
+          editUserId: id,
         },
         input: {
           firstName,

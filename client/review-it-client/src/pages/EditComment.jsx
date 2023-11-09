@@ -14,12 +14,6 @@ const EditComment = ({ user }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user?.isAdmin !== true) {
-      navigate(`/profile/${user?._id}`);
-    }
-  }, []);
-
   const { data } = useQuery(GET_COMMENT_BY_ID, {
     variables: { commentId: id },
   });
@@ -29,6 +23,11 @@ const EditComment = ({ user }) => {
   });
 
   const [editComment] = useMutation(EDIT_COMMENT);
+  useEffect(() => {
+    if (user._id !== data?.getCommentById.author[0]) {
+      navigate(`/profile/${user?._id}`);
+    }
+  }, []);
 
   const onSubmit = async (formData) => {
     const { comment, author, show } = formData;
@@ -76,7 +75,12 @@ const EditComment = ({ user }) => {
       </Helmet>
       <div>
         <h1>Edit comment</h1>
-        <p>This comment appears for the show <Link to={`/show/${data?.getCommentById.show[0]}`}>{getTvShow.data?.getTvShow?.title}</Link></p>
+        <p>
+          This comment appears for the show{" "}
+          <Link to={`/show/${data?.getCommentById.show[0]}`}>
+            {getTvShow.data?.getTvShow?.title}
+          </Link>
+        </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>Comment</label>
           <input
