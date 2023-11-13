@@ -10,25 +10,16 @@ const AboutUsPage = () => {
       </Helmet>
 
       <div>
-        <h2>Let&apos;s take a closer look</h2>
         <div>
-          <div>1</div>
-          Review It is not just a platform; it&apos;s a community of passionate
-          TV show enthusiasts who come together to discuss, critique, and
-          appreciate their favorite shows. Here, you&apos;ll find people who
-          share your love for the latest hits, hidden gems, and cult classics.
-        </div>
+     
+          </div>
       </div>
       <div>
         <h1>
           About<br></br> Us
         </h1>
         <p>
-          <span className={styles.highlightedText}>
-            Ladies and gentlemen, in today&apos;s fast-paced digital age, social
-            media has revolutionized the way we consume and interact with
-            entertainment.
-          </span>
+      
         </p>
         <p>
           Among the various forms of content sharing and discussion, one
@@ -45,6 +36,7 @@ const AboutUsPage = () => {
         </p>
       </div>
     </div>
+    
   );
 };
 
