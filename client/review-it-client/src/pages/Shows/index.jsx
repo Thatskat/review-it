@@ -23,7 +23,7 @@ const ShowsPage = () => {
       <div className="headerSection">
         <div>
           {" "}
-          <button>Order by popularity</button>
+          {/* <button>Order by popularity</button> */}
         </div>
         <div>
           <h1>Tv Shows</h1>

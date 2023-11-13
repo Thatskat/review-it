@@ -38,6 +38,14 @@ const tvShowResolver = {
         console.error(err);
       }
     },
+    paginationTest: async (root, { first, after, last, before}) => {
+      try {
+        const shows = await TvShow.find({}).limit(after || before);
+        return shows;
+      } catch (err) {
+        console.error(err);
+      }
+    },
   },
   Mutation: {
     addTvShow: async (root, arguments, context) => {

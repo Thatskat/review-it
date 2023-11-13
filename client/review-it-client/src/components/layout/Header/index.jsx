@@ -30,9 +30,6 @@ const Header = ({ user, logout }) => {
           <li>
             <Link to="/shows">Tv Shows</Link>
           </li>
-          <li>
-            <Link to="/shows/trending">Trending Shows</Link>
-          </li>
           {user ? (
             <>
               <li>

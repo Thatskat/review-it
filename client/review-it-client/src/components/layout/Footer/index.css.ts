@@ -8,6 +8,7 @@ export const footer = style({
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)",
   textAlign: "end",
+  paddingBottom: "4rem"
 });
 
 globalStyle(`${footer} h4`, {
