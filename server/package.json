@@ -27,7 +27,7 @@
     "lodash": "^4.17.21",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
-    "puppeteer": "^21.2.0",
+    "puppeteer": "^22.12.1",
     "request": "^2.88.2"
   }
 }
