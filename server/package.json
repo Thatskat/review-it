@@ -18,7 +18,7 @@
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
     "glob": "^10.3.3",
-    "graphql": "^16.8.0",
+    "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "graphql-tools": "^9.0.0",
     "joi": "^17.10.0",
